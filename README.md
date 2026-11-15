@@ -21,9 +21,21 @@ For the live Todo / In Progress / Done issue tracker and milestone delivery sequ
 | M6 | D6 Deployment and Monitoring | Todo | [M6_D6_Deployment_Monitoring](milestones/M6_D6_Deployment_Monitoring/) |
 | M7 | D7 Final Communication | Todo | [M7_D7_Final_Communication](milestones/M7_D7_Final_Communication/) |
 
-Canonical datasets are indexed in [data/README.md](data/README.md); M2 and M4 each include a milestone-specific data index and checksum references. See [milestones/README.md](milestones/README.md) for the milestone index and [MILESTONE_REGISTER.csv](milestones/MILESTONE_REGISTER.csv) for status, evidence and next gates. Each milestone folder contains its own README and file manifest. D4 experiment details are in [README_D4.md](README_D4.md).
+Canonical datasets are indexed in [data/README.md](data/README.md); M2 and M4 each include a milestone-specific data index and checksum references. See [milestones/README.md](milestones/README.md) for the milestone index and [MILESTONE_REGISTER.csv](milestones/MILESTONE_REGISTER.csv) for status, evidence and next gates. Each milestone folder contains its own README and file manifest. The active M4 / D4 documentation, assignment notebook, expanded report and experiment evidence are indexed in the [M4 / D4 milestone README](milestones/M4_D4_Modelling/README.md). The top-level [README_D4.md](README_D4.md) is retained only as a legacy PAT-margin experiment record and is not the active project target.
 
 
+
+## M4 / D4 — current modelling checkpoint
+
+**Status: In Progress.** The current project target remains next-quarter **EBITDA Margin**. The D4 assignment artifacts and their locations are:
+
+- [M4 / D4 milestone overview](milestones/M4_D4_Modelling/README.md)
+- [Expanded D4 model-training report (DOCX)](milestones/M4_D4_Modelling/03_DELIVERABLES/ANCP_T%23%23_D4_Expanded_Model_Training_Report.docx)
+- [ML Model Training notebook](milestones/M4_D4_Modelling/02_WORKING/ML_Model_Training.ipynb)
+- [D4 experiment evidence and reproducibility guide](milestones/M4_D4_Modelling/04_EVIDENCE/README.md)
+- [Structured M4 experiment outputs](milestones/M4_D4_Modelling/experiments/)
+
+The expanded report explains the data, engineered features, model families, validation/test performance and actual-versus-predicted test values. It is an assignment/report artifact; the M4 milestone remains open until the full active pipeline's dataset lineage, leakage controls, tests and handoff criteria are satisfied. The legacy PAT-margin experiment in [README_D4.md](README_D4.md) must not be confused with the adopted EBITDA Margin target.
 
 ## Project vision
 
