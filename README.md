@@ -30,8 +30,8 @@ Canonical datasets are indexed in [data/README.md](data/README.md); M2 and M4 ea
 **Status: In Progress.** The current project target remains next-quarter **EBITDA Margin**. The D4 assignment artifacts and their locations are:
 
 - [M4 / D4 milestone overview](milestones/M4_D4_Modelling/README.md)
-- [Expanded D4 model-training report (DOCX)](milestones/M4_D4_Modelling/03_DELIVERABLES/ANCP_T%23%23_D4_Expanded_Model_Training_Report.docx)
-- [ML Model Training notebook](milestones/M4_D4_Modelling/02_WORKING/ML_Model_Training.ipynb)
+- Expanded D4 model-training report (DOCX) — prepared locally; binary commit is pending.
+- ML Model Training notebook — latest user-supplied copy identified; binary commit is pending.
 - [D4 experiment evidence and reproducibility guide](milestones/M4_D4_Modelling/04_EVIDENCE/README.md)
 - [Structured M4 experiment outputs](milestones/M4_D4_Modelling/experiments/)
 
