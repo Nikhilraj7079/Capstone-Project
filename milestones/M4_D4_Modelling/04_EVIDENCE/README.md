@@ -3,8 +3,8 @@
 This folder records the modelling evidence and reproducibility instructions for the M4 / D4 checkpoint. The active project target is **next-quarter EBITDA Margin**.
 
 ## Assignment notebook and report
-- [ML Model Training notebook](../02_WORKING/ML_Model_Training.ipynb) — user-supplied notebook that constructs the one-quarter-ahead EBITDA target, engineers lag/rolling features, compares candidate models and produces the next-quarter point forecast.
-- [Expanded D4 report](../03_DELIVERABLES/ANCP_T%23%23_D4_Expanded_Model_Training_Report.docx) — detailed narrative of the dataset, feature engineering, all model families, validation results, holdout results, actual-versus-predicted test values, interpretation and limitations.
+- ML Model Training notebook — user-supplied notebook identified for this checkpoint; its binary commit to this repository is still pending.
+- Expanded D4 report (DOCX) — prepared for this checkpoint; its binary commit to this repository is still pending. The report covers the dataset, feature engineering, model families, validation and holdout results, actual-versus-predicted test values, interpretation and limitations.
 
 ## Experiment and environment evidence
 - [Experiment log CSV](experiment_log_d4-v1.csv) — candidate-level validation metrics, test metrics where saved, model parameters, feature set, seed and data-version caveats.
