@@ -6,8 +6,8 @@
 Develop and document reproducible forecasting baselines and candidate models for IndiGo's next-quarter **EBITDA Margin**. This milestone includes target construction, feature engineering, chronological validation, model comparison, experiment tracking and a modelling report. M4 remains in progress; the expanded assignment report and notebook are evidence additions, not a declaration that all M4 exit criteria are complete.
 
 ## Current D4 assignment artifacts
-- [Expanded D4 Model Training Report (DOCX)](03_DELIVERABLES/ANCP_T%23%23_D4_Expanded_Model_Training_Report.docx) — detailed explanation of the data, ten engineered features, nine model approaches, validation/test metrics, actual-versus-predicted values for the seven-row test period, interpretation and limitations.
-- [ML Model Training notebook](02_WORKING/ML_Model_Training.ipynb) — user-supplied notebook used as the modelling source. It forecasts next-quarter EBITDA Margin.
+- Expanded D4 Model Training Report (DOCX) — prepared locally; binary commit to this repository is still pending. It covers the data, ten engineered features, nine model approaches, validation/test metrics, actual-versus-predicted values for the seven-row test period, interpretation and limitations.
+- ML Model Training notebook — latest user-supplied copy identified locally; binary commit to this repository is still pending. It forecasts next-quarter EBITDA Margin.
 - [D4 evidence and reproducibility](04_EVIDENCE/README.md) — experiment log, requirements and run guidance.
 - [D4 modelling outputs](experiments/) — repository-tracked candidate results, metrics, test predictions, experiment log, data manifest and environment record from the active M4 pipeline.
 - [D4 source code](src/d4_train.py) and [tests](tests/test_d4_train.py).
