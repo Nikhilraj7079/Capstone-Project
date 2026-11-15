@@ -1,27 +1,25 @@
-# D4-v1 — Experiment Evidence and Reproducibility
+# D4 — Experiment Evidence and Reproducibility
 
-This folder contains the experiment tracker and environment/run guidance for the D4-v1 EBITDA Margin forecasting exercise.
+This folder records the modelling evidence and reproducibility instructions for the M4 / D4 checkpoint. The active project target is **next-quarter EBITDA Margin**.
 
-## Files
+## Assignment notebook and report
+- [ML Model Training notebook](../02_WORKING/ML_Model_Training.ipynb) — user-supplied notebook that constructs the one-quarter-ahead EBITDA target, engineers lag/rolling features, compares candidate models and produces the next-quarter point forecast.
+- [Expanded D4 report](../03_DELIVERABLES/ANCP_T%23%23_D4_Expanded_Model_Training_Report.docx) — detailed narrative of the dataset, feature engineering, all model families, validation results, holdout results, actual-versus-predicted test values, interpretation and limitations.
 
+## Experiment and environment evidence
 - [Experiment log CSV](experiment_log_d4-v1.csv) — candidate-level validation metrics, test metrics where saved, model parameters, feature set, seed and data-version caveats.
-- [Requirements](requirements-d4-v1.txt) — Python package dependencies; xgboost is optional.
+- [Requirements](requirements-d4-v1.txt) — Python package dependencies; XGBoost is optional.
 - [Run instructions](RUN_D4_v1.md) — setup and execution steps.
+- [Repository experiment outputs](../experiments/) — candidate comparison, data manifest, environment, experiment log, metrics and test predictions from the structured M4 pipeline.
 
-## Notebook and report
-
-The training notebook used as the source for the report was supplied as `ML_Model_Training(1).ipynb`. It has not yet been committed to this repository folder. Add the executed notebook here before treating the repository evidence bundle as complete.
-
-The assignment PDF is generated separately as `ANCP_T##_D4_v1.pdf`; it is not committed in this evidence folder yet.
-
-## Recorded experiment outcome
-
+## Recorded assignment outcome
 - Target: next-quarter EBITDA Margin.
-- Split: chronological 60% / 20% / 20% (20 train, 7 validation, 7 test rows).
+- Assignment notebook split: chronological 60% / 20% / 20% (20 train, 7 validation, 7 test rows, from 34 usable supervised rows).
 - Validation winner: Seasonal Naive (MAE 7.470).
-- Holdout Seasonal Naive: MAE 3.948, RMSE 4.714, MASE 0.237.
-- Historical Mean holdout: MAE 12.948, RMSE 14.347, MASE 0.777.
+- Saved holdout metrics: Seasonal Naive MAE 3.948, RMSE 4.714, MASE 0.237; Historical Mean MAE 12.948, RMSE 14.347, MASE 0.777.
+- The expanded report labels the individual candidate-model test predictions as reconstructed from the notebook's charting/model code where the notebook did not save a standalone numerical test-prediction table for every candidate.
 
 ## Data and execution caveats
+The notebook expects an input workbook named `EDA ANALYSIS.xlsx` and a monthly oil benchmark quarterly-mean column. Keep that workbook version aligned with the notebook. The report explains the difference between the source workbook versions available during preparation. The original notebook does not preserve the exact source workbook hash/version, original run timestamp or a package lockfile. The experiment CSV records these omissions; its report-preparation date is not the original model execution timestamp.
 
-The original notebook does not preserve the exact source workbook hash/version, run timestamp, package lockfile, or exact split quarter boundaries. The CSV labels the date as report-preparation date and explicitly records these omissions. Do not treat that date as the original execution timestamp. Capture these items in every subsequent run.
+This assignment notebook/report is a separately documented D4 exercise. Do not silently merge its metrics with the structured pipeline outputs under `milestones/M4_D4_Modelling/experiments/`; compare them only after confirming target construction, data version, feature timing and split windows are identical.
