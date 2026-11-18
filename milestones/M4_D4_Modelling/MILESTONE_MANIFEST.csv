@@ -5,7 +5,7 @@ DELIVERABLES_CHECKLIST.md,D4 submission and reproducibility gate,DELIVERABLES_CH
 EVALUATION_RECORD.md,Assignment results and data limitations,EVALUATION_RECORD.md,Updated
 03_DELIVERABLES/ANCP_T##_D4_Expanded_Model_Training_Report.pdf,"Five-page D4 assignment report; EBITDA Margin target",03_DELIVERABLES/ANCP_T##_D4_Expanded_Model_Training_Report.pdf,Received locally 2026-11-18; GitHub binary upload pending verification
 02_WORKING/ML_Model_Training(1).ipynb,"User-supplied training notebook; saved outputs retained",02_WORKING/ML_Model_Training(1).ipynb,Received locally 2026-11-18; GitHub binary upload pending verification
-04_EVIDENCE/experiment_log_d4-v1.csv,"Nine validation runs and test metrics where available; includes parameter, feature and seed notes",04_EVIDENCE/experiment_log_d4-v1.csv,Existing CSV updated; original execution date and data hash were not captured
+04_EVIDENCE/experiment_log_d4-v1.csv,"Nine validation runs and test metrics where available; parameters, features and seed notes",04_EVIDENCE/experiment_log_d4-v1.csv,Updated; original execution date and data hash were not captured
 04_EVIDENCE/RUN_D4_v1.md,Environment and execution instructions,RUN_D4_v1.md,Updated
 04_EVIDENCE/requirements-d4-v1.txt,Notebook dependency list,requirements-d4-v1.txt,Present; package versions not locked
 experiments/D4_*.csv/json,"Separate structured M4 experiment outputs",experiments/,Legacy PAT-margin experiment; keep separate from assignment EBITDA results
