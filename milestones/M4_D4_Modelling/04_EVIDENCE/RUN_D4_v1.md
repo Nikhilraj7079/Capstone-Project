@@ -50,7 +50,7 @@ np.random.seed(42)
 warnings.filterwarnings("ignore")
 ```
 
-After loading the workbook, record the run timestamp (UTC), workbook SHA-256, Python version and `pip freeze`. The original notebook uses `random_state=42` for Random Forest, Gradient Boosting and XGBoost; it does not set a global seed.
+After loading the workbook, record the UTC run timestamp, input SHA-256, Python version and `pip freeze`. The original notebook uses `random_state=42` for Random Forest, Gradient Boosting and XGBoost; it does not set a global seed.
 
 ## 4. Expected outputs
 The saved assignment result uses 20 train / 7 validation / 7 test rows. Seasonal Naive wins on validation MAE 7.470. Saved holdout MAE/RMSE/MASE are 3.948 / 4.714 / 0.237. The notebook saves `best_ebitda_model.pkl` and prints a point forecast. Check forecast cutoff availability before treating it as usable.
