@@ -1,0 +1,64 @@
+name: D4-v1 binary artifact ingest
+on:
+  push:
+    paths:
+      - "temp_d4_upload/READY"
+permissions:
+  contents: write
+jobs:
+  ingest-d4-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Restore and verify D4 deliverables
+        shell: bash
+        run: |
+          python - <<'PY'
+          import base64, gzip, hashlib, json
+          from pathlib import Path
+
+          root = Path("temp_d4_upload")
+          manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+          for item in manifest["files"]:
+              encoded = "".join(
+                  (root / name).read_text(encoding="ascii").strip()
+                  for name in item["chunks"]
+              )
+              payload = base64.b64decode(encoded, validate=True)
+              if item.get("gzip"):
+                  payload = gzip.decompress(payload)
+              actual = hashlib.sha256(payload).hexdigest()
+              if actual != item["sha256"]:
+                  raise SystemExit(
+                      f"SHA-256 mismatch for {item['destination']}: {actual}"
+                  )
+              destination = Path(item["destination"])
+              destination.parent.mkdir(parents=True, exist_ok=True)
+              destination.write_bytes(payload)
+              print(f"Verified {destination}: {len(payload)} bytes; SHA-256 {actual}")
+
+          for path in sorted(root.rglob("*"), reverse=True):
+              if path.is_file():
+                  path.unlink()
+              elif path.is_dir():
+                  path.rmdir()
+          root.rmdir()
+          PY
+      - name: Commit deliverables and create d4-v1 tag
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "milestones/M4_D4_Modelling/03_DELIVERABLES/ANCP_T##_D4_Expanded_Model_Training_Report.pdf"
+          git add "milestones/M4_D4_Modelling/02_WORKING/ML_Model_Training(1).ipynb"
+          git add "milestones/M4_D4_Modelling/02_WORKING/ML_Model_Training_D4_v1_RERUN_READY.ipynb"
+          git commit -m "D4-v1: upload EBITDA margin report and training notebooks"
+          git push origin HEAD:main
+          if ! git rev-parse -q --verify refs/tags/d4-v1 >/dev/null; then
+            git tag -a d4-v1 -m "D4-v1: IndiGo next-quarter EBITDA Margin training submission"
+            git push origin refs/tags/d4-v1
+          fi
