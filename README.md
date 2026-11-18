@@ -30,12 +30,13 @@ Canonical datasets are indexed in [data/README.md](data/README.md); M2 and M4 ea
 **Status: In Progress.** The current project target remains next-quarter **EBITDA Margin**. The D4 assignment artifacts and their locations are:
 
 - [M4 / D4 milestone overview](milestones/M4_D4_Modelling/README.md)
-- Expanded D4 model-training report (DOCX) — prepared locally; binary commit is pending.
-- ML Model Training notebook — latest user-supplied copy identified; binary commit is pending.
-- [D4 experiment evidence and reproducibility guide](milestones/M4_D4_Modelling/04_EVIDENCE/README.md)
+- Five-page D4 report: `ANCP_T##_D4_Expanded_Model_Training_Report.pdf` — received 18-Nov-2026; GitHub binary commit is pending.
+- ML Model Training notebook: `ML_Model_Training(1).ipynb` — received 18-Nov-2026; saved outputs reviewed; GitHub binary commit is pending.
+- [D4 experiment log and reproducibility guide](milestones/M4_D4_Modelling/04_EVIDENCE/README.md)
+- [M4 D4 deliverables index](milestones/M4_D4_Modelling/03_DELIVERABLES/README.md)
 - [Structured M4 experiment outputs](milestones/M4_D4_Modelling/experiments/)
 
-The expanded report explains the data, engineered features, model families, validation/test performance and actual-versus-predicted test values. It is an assignment/report artifact; the M4 milestone remains open until the full active pipeline's dataset lineage, leakage controls, tests and handoff criteria are satisfied. The legacy PAT-margin experiment in [README_D4.md](README_D4.md) must not be confused with the adopted EBITDA Margin target.
+The five-page report explains the data, engineered features, nine model families, chronological validation/test performance and actual-versus-predicted test values. The experiment log records metric provenance. The exact source assignment workbook is not included, so a clean notebook run is not yet reproduced. M4 remains open until the input data hash, execution environment and forecast-date information-availability controls are verified, and the broader pipeline's data lineage, tests and handoff criteria are satisfied. The legacy PAT-margin experiment in [README_D4.md](README_D4.md) must not be confused with the adopted EBITDA Margin target.
 
 ## Project vision
 
