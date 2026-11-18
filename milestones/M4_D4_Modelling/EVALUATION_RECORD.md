@@ -39,3 +39,14 @@ Do not quote these values as performance of the current EBITDA model.
 ## 5. Exit gate
 
 M4 is complete only when the EBITDA target data and feature pipeline are frozen, the experiments are reproducible, the model comparison is documented, and the selected baseline/candidate is handed to M5 for independent rolling-origin evaluation.
+
+
+## 6. D4-v1 assignment report and notebook received — 18 November 2026
+
+The five-page `ANCP_T##_D4_Expanded_Model_Training_Report.pdf` and `ML_Model_Training(1).ipynb` form a separate EBITDA-margin assignment experiment. The report describes 38 quarterly observations, 34 usable supervised rows, ten features and a chronological 20/7/7 train-validation-test split. Nine candidate approaches were compared. Seasonal Naive was selected at validation MAE 7.470; its saved test metrics are MAE 3.948, RMSE 4.714 and MASE 0.237. The full experiment history is in `04_EVIDENCE/experiment_log_d4-v1.csv`.
+
+The report's additional all-model test table (ETS, Gradient Boosting, XGBoost, Random Forest, Elastic Net, Ridge and Lasso) is reconstructed from the notebook's chart code rather than a verbatim saved numerical table. The experiment log preserves that distinction.
+
+**Reproducibility remains open:** the input workbook `EDA ANALYSIS.xlsx` / `Sheet1` is not included with the upload; its hash and original run timestamp are absent; the original notebook lacks imports/setup and execution counts. The report metadata shows 10-Nov-2026 PDF creation, not the model-run date. The forecast assumes current-quarter features were known at the forecast cutoff. Verify this assumption and the printed 29.93 point forecast against the exact source workbook before using it operationally.
+
+The earlier structured M4 experiment in `experiments/D4_*.csv/json` remains a separate PAT-margin legacy track; its outputs are not evidence for this EBITDA assignment.
