@@ -55,7 +55,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "milestones/M4_D4_Modelling/03_DELIVERABLES/ANCP_T##_D4_Expanded_Model_Training_Report.pdf"
           git add "milestones/M4_D4_Modelling/02_WORKING/ML_Model_Training(1).ipynb"
-          git add "milestones/M4_D4_Modelling/02_WORKING/ML_Model_Training_D4_v1_RERUN_READY.ipynb"
+          git add -u temp_d4_upload
           git commit -m "D4-v1: upload EBITDA margin report and training notebooks"
           git push origin HEAD:main
           if ! git rev-parse -q --verify refs/tags/d4-v1 >/dev/null; then
