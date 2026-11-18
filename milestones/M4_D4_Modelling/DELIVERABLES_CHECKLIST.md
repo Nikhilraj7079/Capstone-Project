@@ -1,33 +1,26 @@
 # M4 / D4 — EBITDA Margin Modelling Checklist
 
-**Status:** IN PROGRESS. The current M4 deliverable is a separate EBITDA Margin experiment. The existing D4-v1 PAT-margin experiment is retained only as legacy evidence.
+**Status:** D4-v1 assignment report/notebook received; clean-run reproducibility and broader M4 exit gate remain open.
 
-## Target and data
-- [x] Adopted target recorded: next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100.
-- [x] M3 EDA workbook and notebook available as the exploratory handoff.
-- [ ] Confirm source EBITDA definition and Revenue from Operations denominator.
-- [ ] Reconcile target-quarter financial rows, estimates and unavailable periods against raw CP `IS` sheet.
-- [ ] Freeze the approved EBITDA modelling dataset and record its SHA-256, source lineage and fiscal-quarter keys.
-- [ ] Ensure the target-quarter EBITDA and revenue values are labels only, never predictors.
-- [ ] Record actual/publication availability dates or apply an explicit conservative lag.
+## D4-v1 assignment submission
+- [x] Five-page report received and checked: problem type, target, model choice, validation design, results and limitations.
+- [x] Submitted notebook received with saved validation/test outputs.
+- [x] Nine model approaches compared; Seasonal Naive selected on validation MAE.
+- [x] Experiment log records validation runs, parameters, features, seeds and available test metrics.
+- [x] Report clearly labels the reconstructed all-model test metrics.
 
-## Modelling workflow
-- [ ] Create the one-quarter-ahead supervised table without bridging missing quarters.
-- [ ] Implement persistence and seasonal-naive benchmarks.
-- [ ] Implement parsimonious challenger model(s) only where sample size supports them.
-- [ ] Use chronological train/validation/test or rolling-origin splits; do not shuffle quarters.
-- [ ] Fit imputation, scaling and feature selection only on training data.
-- [ ] Compare baseline and challengers on the same periods using MAE and RMSE in EBITDA-Margin percentage points.
-- [ ] Save quarter-level predictions, residuals, metrics and model-selection rationale.
+## Reproducibility
+- [ ] Commit and pin the exact `EDA ANALYSIS.xlsx` input workbook plus SHA-256.
+- [ ] Clean-run notebook with imports/setup cell and record UTC run date.
+- [ ] Save exact Python/package environment (`pip freeze`) and input fingerprint.
+- [x] Requirements and run instructions are present.
+- [ ] Verify current-quarter input availability at the forecast cutoff and recheck the printed 29.93 point forecast.
+- [ ] Add new clean-run metrics and data hash to the experiment log.
 
-## Reproducibility and handoff
-- [ ] Add run log, seed/configuration, environment and dataset manifest.
-- [ ] Add or update unit tests for target construction, chronology and leakage controls.
-- [ ] Produce the M4 EBITDA modelling report and document limitations.
-- [ ] Hand the selected baseline/candidate and frozen data version to M5.
+## Broader M4 exit
+- [ ] Reconcile the D4-v1 assignment dataset with the M2/M3 approved EBITDA source lineage.
+- [ ] Preserve target quarter, split boundaries and feature timing in the model manifest.
+- [ ] Pass data/target-construction tests and hand off the selected baseline/candidate to M5 rolling-origin evaluation.
 
-## Legacy evidence
-- [x] D4-v1 PAT-margin experiment is preserved and labelled as legacy.
-- [x] Its metrics are not represented as EBITDA model performance.
-
-The D4-v1 PAT code, report and metrics do not complete the active EBITDA Margin modelling milestone.
+## Legacy evidence separation
+- [x] The older structured PAT-margin experiment remains labelled as legacy and is not mixed with this EBITDA assignment.
