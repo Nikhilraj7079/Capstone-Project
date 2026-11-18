@@ -1,47 +1,42 @@
 # M4 / D4 — Modelling and Forecasting
 
-**Status:** IN PROGRESS — current active milestone.
+**Status:** IN PROGRESS — D4 assignment report and notebook received; repository binary upload verification pending.
 
 ## Brief
-Develop and document reproducible forecasting baselines and candidate models for IndiGo's next-quarter **EBITDA Margin**. This milestone includes target construction, feature engineering, chronological validation, model comparison, experiment tracking and a modelling report. M4 remains in progress; the expanded assignment report and notebook are evidence additions, not a declaration that all M4 exit criteria are complete.
+Develop and document reproducible forecasting baselines and candidate models for IndiGo's next-quarter **EBITDA Margin**. This milestone includes target construction, feature engineering, a predeclared chronological split, model comparison, experiment tracking and a modelling report. The D4 assignment checkpoint is documented separately from the structured legacy PAT-margin experiment also retained in this folder.
 
-## Current D4 assignment artifacts
-- Expanded D4 Model Training Report (DOCX) — prepared locally; binary commit to this repository is still pending. It covers the data, ten engineered features, nine model approaches, validation/test metrics, actual-versus-predicted values for the seven-row test period, interpretation and limitations.
-- ML Model Training notebook — latest user-supplied copy identified locally; binary commit to this repository is still pending. It forecasts next-quarter EBITDA Margin.
-- [D4 evidence and reproducibility](04_EVIDENCE/README.md) — experiment log, requirements and run guidance.
-- [D4 modelling outputs](experiments/) — repository-tracked candidate results, metrics, test predictions, experiment log, data manifest and environment record from the active M4 pipeline.
-- [D4 source code](src/d4_train.py) and [tests](tests/test_d4_train.py).
+## Current D4-v1 assignment artifacts
+- **Five-page report:** [ANCP_T##_D4_Expanded_Model_Training_Report.pdf](03_DELIVERABLES/README.md). It documents the business question, target, problem type, features, train/validation/test split, model-family rationale, validation ranking, holdout performance and limitations.
+- **Submitted notebook:** [ML_Model_Training(1).ipynb](02_WORKING/README.md). This is the notebook referenced by the report and contains the saved validation/test outputs.
+- **Experiment log:** [experiment_log_d4-v1.csv](04_EVIDENCE/experiment_log_d4-v1.csv) records the nine validation candidates, model parameters, seeds and available test metrics. Candidate test scores reconstructed from chart code are explicitly distinguished from saved notebook tables.
+- **Run and environment instructions:** [RUN_D4_v1.md](04_EVIDENCE/RUN_D4_v1.md) and [requirements-d4-v1.txt](04_EVIDENCE/requirements-d4-v1.txt).
+- **Existing structured M4 pipeline:** [source code](src/d4_train.py), [tests](tests/test_d4_train.py) and [machine-readable experiment outputs](experiments/).
+
+## D4-v1 assignment result
+The notebook treats the task as supervised one-quarter-ahead time-series regression. It retains 38 raw quarterly observations and 34 usable supervised rows with 10 features. The split is chronological and fixed at 20 train / 7 validation / 7 test rows (60% / 20% / 20%); there is no random shuffle.
+
+Nine approaches are compared: Seasonal Naive, Historical Mean, Ridge, Lasso, Elastic Net, Random Forest, Gradient Boosting, XGBoost and ETS. Seasonal Naive records the lowest validation MAE (7.470) and is selected. Its saved test metrics are MAE 3.948, RMSE 4.714 and MASE 0.237 on the seven-row holdout. The report's additional all-model test metrics are reconstructed from the notebook's chart code and are labelled as reconstructed in the report and experiment log.
+
+## Important reproducibility caveats
+- The submitted notebook expects an input workbook named `EDA ANALYSIS.xlsx`, worksheet `Sheet1`, with the monthly oil benchmark quarterly-mean field. That exact workbook version/hash is not embedded in the notebook or supplied with this upload.
+- The original notebook has saved outputs but does not include an imports/setup cell or execution counts. The saved outputs can be reviewed; a clean run requires the source workbook and the imports listed in the run instructions.
+- Original model execution timestamp, input workbook hash and original package lockfile were not captured. The experiment log does not misstate the report-preparation date as the actual run date.
+- The notebook assumes current-quarter financial and macro inputs are available at the forecast cutoff. If they were not public by that date, predictors must be lagged or forecast separately.
+- The report prints a next-quarter point forecast of 29.93. This is an estimate only; its current-quarter information-availability assumption and seasonal-lag alignment must be rechecked against the exact input workbook before operational use.
 
 ## Data used
-- [M4 quarterly snapshot](data/Final_Quarterly_Data%281%29.xlsx) — preserved modelling input snapshot and audit tabs.
-- [M3 EBITDA-only analysis panel](../M3_D3_Exploratory_Data_Analysis/data/EDA_ANALYSIS_EBITDA_ONLY_38Q.csv) — 38-quarter exploratory handoff.
-- [M2 source data index](../M2_D2_Data_Audit/data/README.md) — raw data lineage and dictionary.
-
-The user-supplied assignment notebook expects an input workbook named `EDA ANALYSIS.xlsx` and the monthly oil benchmark quarterly-mean field. Its report explains the workbook/version caveat. Keep the exact workbook version aligned with the notebook when reproducing those results. Do not assume this assignment workbook is interchangeable with the canonical M4 quarterly snapshot above.
-
-## Workflow
-1. Lock the M2/M3 dataset versions and checksums.
-2. Verify EBITDA definition and revenue denominator; reconcile unavailable/estimated periods.
-3. Build a chronological one-quarter-ahead supervised dataset without bridging missing periods.
-4. Create persistence and seasonal-naive baselines.
-5. Build candidate models with preprocessing fitted on training data only.
-6. Tune on chronological validation; preserve a final untouched test segment.
-7. Compare MAE/RMSE, inspect residuals and report limits.
-8. Save model artefacts, run logs, predictions, tests, environment and report.
-9. Hand the selected model/baseline and exact data version to M5.
+The D4-v1 assignment notebook's input is distinct from the structured M4 pipeline snapshot. Do not substitute `data/Final_Quarterly_Data(1).xlsx` or the M3 CSV into the assignment notebook without mapping the exact expected headers and reconciling source values. See [D4 inputs](01_INPUTS/README.md) and [D4 evidence](04_EVIDENCE/README.md).
 
 ## Folder map
 - `01_INPUTS/` — approved datasets and input documentation.
-- `02_WORKING/` — working notebooks, scripts and tests.
-- `03_DELIVERABLES/` — reports and submission-ready documents.
-- `04_EVIDENCE/` — experiment logs, environment and run instructions.
-- `05_REFERENCES/` — methodology/source references.
-- `data/` — milestone modelling dataset snapshots.
-- `experiments/` — machine-readable candidate results, metrics, predictions and manifests.
-- `src/`, `tests/`, `notebooks/` — reproducible code, checks and notebooks.
+- `02_WORKING/` — assignment notebook, pipeline notebooks and working code.
+- `03_DELIVERABLES/` — submission-ready report.
+- `04_EVIDENCE/` — experiment log, environment and run instructions.
+- `05_REFERENCES/` — source/method reference index.
+- `data/`, `experiments/`, `src/`, `tests/` — structured M4 data, metrics, scripts and tests.
 
-## Important historical record
-Older D4-v1 files and the top-level [README_D4.md](../../README_D4.md) describe a separate legacy PAT-margin experiment. That legacy work must not be mixed with the current project's adopted EBITDA Margin target. The current project target is EBITDA Margin only. Where historical PAT-margin material is retained for audit/history, it is labelled as legacy and is not evidence for the current EBITDA model.
+## Legacy experiment separation
+The older top-level [README_D4.md](../../README_D4.md) and existing structured records in `experiments/` describe a separate PAT-margin experiment. Those metrics are legacy evidence and are not results from this EBITDA Margin assignment notebook. Keep the target, dataset and split labels separate in all future reporting.
 
 ## Exit criteria
-M4 is complete only after the active EBITDA modelling pipeline has a pinned and reconciled input dataset, leakage-safe chronological validation, baseline comparison, candidate results, tests, reproducibility artifacts and a documented selection decision handed to M5. The expanded assignment report and notebook are additional M4 documentation; they do not by themselves close the milestone.
+The submitted five-page report, assignment notebook and experiment log are the D4 assignment evidence. M4 remains in progress until the exact source workbook is pinned, the notebook can be clean-run with recorded environment metadata, the feature-availability assumptions are validated, and the broader active pipeline passes its data, tests and handoff gates.
