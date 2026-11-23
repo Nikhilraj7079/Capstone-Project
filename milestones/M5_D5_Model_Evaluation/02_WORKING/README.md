@@ -1,21 +1,25 @@
 # M5 — Working Files
 
-## Received training/evaluation code
+## D5 model training code
 
-| File received | Purpose | SHA-256 | GitHub binary status |
-|---|---|---|---|
-| `ML_Model_Training(6).ipynb` | Notebook for target/feature construction, chronological split, model comparison, holdout evaluation, deployment artefact and next-quarter forecast | `3e8a2b8a255450cddee32fe5d3bd26e1ac14dd6e4ed7b33f81e3406de7948310` | Pending upload/verification |
-| `ml_model_training(2).py` | Python script version of the training workflow | `31abe74c8db7d247780a35b83b95bf1bb546120e3b8a4b31b86766670b9bea4f` | Pending upload/verification |
+The Python source and Jupyter notebook are now committed in this folder.
 
-The notebook and script are training workflow artefacts shared with M4 / D4. M5 references them as the evaluation implementation evidence; avoid creating inconsistent duplicate copies across modules. If stored centrally under M4, link to that canonical location from this folder.
+| File | Description | Link |
+|---|---|---|
+| `ML_Model_Training.ipynb` | Runnable Jupyter notebook version of the received Python workflow, with dependency/import setup and input instructions | [Open notebook](ML_Model_Training.ipynb) |
+| `ml_model_training(2).py` | Original received Python training/evaluation script | [Open Python file](ml_model_training%282%29.py) |
+
+**Notebook provenance:** The committed notebook is assembled from the received `ml_model_training(2).py` source and includes a setup cell for required imports. It is not represented as the exact original `ML_Model_Training(6).ipynb` upload. The original notebook binary was not available in the files attached to this update.
 
 ## D5 evaluation scope
 The D5 memorandum evaluates a locked chronological holdout of seven target quarters (2024 Q3–2026 Q1). It does not claim a rolling-origin backtest. Rolling-origin evaluation remains a recommended extension.
 
 ## Reproduction requirements
-1. Pin the exact `EDA ANALYSIS.xlsx` source workbook and record SHA-256.
-2. Record Python and package versions.
-3. Run from a clean clone with the workbook in the expected location.
-4. Confirm the 38 raw observations, 34 supervised rows, 10 features and 20/7/7 split.
-5. Verify the Seasonal Naive `shift(3)` alignment and corrected 2026 Q3 forecast of 26.11%.
+1. Place the exact `EDA ANALYSIS.xlsx` source workbook in the notebook working directory (or Colab `/content/`).
+2. Use worksheet `Sheet1` with the required columns documented in [M5 inputs](../01_INPUTS/README.md).
+3. Record the workbook SHA-256 and Python/package versions.
+4. Run from a clean clone and confirm 38 raw observations, 34 supervised rows, 10 features and the expected chronological split.
+5. Verify Seasonal Naive `shift(3)` alignment and compare the results with the D5 memorandum.
 6. Preserve the distinction between saved test metrics and candidate metrics reconstructed from chart-generation code.
+
+**Reproducibility caution:** The exact source workbook vintage is not yet pinned. The notebook should not be treated as a clean reproduction of D5 report results until the source workbook is reconciled.
