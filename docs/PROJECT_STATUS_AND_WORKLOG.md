@@ -19,7 +19,7 @@ Develop an end-to-end analytics system to forecast IndiGo's next-quarter **EBITD
 | M1 | D1 Project Charter | Completed | Revised EBITDA-focused scope and charter records |
 | M2 | D2 Data Audit | Completed | Source register, collection tracker, data dictionary, audit and governance records |
 | M3 | D3 EDA | Completed | Executed EDA notebook and 38-quarter analysis; exact workbook is needed for a clean rerun and one quarterly discrepancy requires reconciliation |
-| M4 | D4 Model Training | **Completed** | Expanded report and updated training notebook received; pin exact input workbook, clean-run and verify forecast timing |
+| M4 | D4 Model Training | **Completed** | Expanded report and updated training notebook submitted; retain source-workbook, clean-run and forecast-timing caveats as D6 handoff controls |
 | M5 | D5 Model Evaluation | **Completed** | Four-page evaluation memo received; chronological holdout, leakage checklist, error-cost assessment, robustness discussion and empirical risk band |
 | M6 | D6 Deployment & Monitoring | **In Progress** | Integrate D5-approved model and feature contract; test API/UI, refresh, data health and monitoring |
 | M7 | D7 Final Communication | Todo | Final report, model card, slides, speaker notes and reproducible demo |
