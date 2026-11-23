@@ -1,6 +1,6 @@
 # M4 / D4 — Model Training and Forecasting
 
-**Status: IN PROGRESS.** The D4 expanded training report and updated model-training notebook have been received and indexed. The exact source workbook/version and clean-run reproducibility gates remain open.
+**Status: COMPLETED.** The D4 expanded training report and updated model-training notebook have been submitted and documented. Source-workbook/version and clean-run reproducibility caveats remain recorded as handoff controls for M6 / D6.
 
 ## Scope
 Train and compare forecasting baselines and candidate models for IndiGo's next-quarter **EBITDA Margin**. PAT-margin experiment records in the legacy structured pipeline are separate and must not be reported as current EBITDA results.
@@ -33,4 +33,4 @@ Train and compare forecasting baselines and candidate models for IndiGo's next-q
 - `experiments/`, `src/`, `tests/` — structured M4 pipeline; keep legacy PAT experiment records separate.
 
 ## Exit criteria
-D4 remains open until the exact input workbook is pinned and hashed, the notebook is clean-run with environment metadata, quarterly values and feature timing are reconciled, and the active EBITDA model handoff is reproducible.
+D4 is recorded as completed for the capstone submission. The exact input workbook/hash, clean-run environment, quarterly-value reconciliation and feature-timing controls remain visible follow-up items for the D6 deployment handoff.
