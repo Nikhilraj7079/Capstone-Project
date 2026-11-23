@@ -1,14 +1,16 @@
 # M5 / D5 — Model Evaluation & Validation
 
-**Status: COMPLETED WITH DOCUMENTED LIMITATIONS.** The D5 executive decision memorandum, updated model-training notebook and Python training script have been received and are indexed below. Their binary presence on GitHub must be verified separately; documentation does not imply binary upload.
+**Status: COMPLETED WITH DOCUMENTED LIMITATIONS.** The D5 executive decision memorandum, updated model-training notebook and Python training script have been received and are indexed below. The Python source and a notebook version derived from it are committed in the M5 working folder. The original `ML_Model_Training(6).ipynb` upload is not available here and is not represented as uploaded.
 
 ## 1. Submitted D5 files and data record
 
 | Artifact | Received filename | Purpose | SHA-256 | GitHub binary status |
 |---|---|---|---|---|
 | Evaluation memorandum | `ANCP_Team-K_D5_v1.pdf` (4 pages) | D5 decision, validation, leakage audit, error-cost and robustness assessment | `9055c5e0e35a3dd7e7ea88e36e03929f8d00a131af0d7808ad36fa787cd74c82` | Pending upload/verification |
-| Updated training notebook | `ML_Model_Training(6).ipynb` | Reproducible model-training/evaluation workflow and saved outputs | `3e8a2b8a255450cddee32fe5d3bd26e1ac14dd6e4ed7b33f81e3406de7948310` | Pending upload/verification |
-| Python training script | `ml_model_training(2).py` | Python source version of the training/evaluation workflow | `31abe74c8db7d247780a35b83b95bf1bb546120e3b8a4b31b86766670b9bea4f` | Pending upload/verification |
+| Jupyter notebook | `ML_Model_Training.ipynb` | Notebook assembled from the received Python workflow, with setup/import cell | Committed: [Open notebook](02_WORKING/ML_Model_Training.ipynb) |
+| Python training script | `ml_model_training(2).py` | Original received Python source | Committed: [Open Python file](02_WORKING/ml_model_training%282%29.py) |
+| Original D5 notebook upload | `ML_Model_Training(6).ipynb` | Original submitted notebook version | Not available in this update; not claimed as uploaded |
+
 
 **Data vintage described by D5:** 38 raw quarterly observations from 2017 Q1 through 2026 Q2; 34 usable supervised rows after target/lag/rolling-feature construction; 10 engineered features. The split is chronological and unshuffled: 20 train / 7 validation / 7 test. The locked test targets cover 2024 Q3–2026 Q1.
 
