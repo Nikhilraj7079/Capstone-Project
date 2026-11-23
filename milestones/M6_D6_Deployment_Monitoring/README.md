@@ -1,9 +1,9 @@
 # M6 / D6 — Deployment and Monitoring
 
-**Status:** TODO — NOT STARTED
+**Status:** IN PROGRESS — ACTIVE DEVELOPMENT
 
 ## Brief
-Integrate the D5-approved forecasting model into a tested API and user interface, with controlled market-data refresh and ongoing data/model monitoring. Existing backend/frontend/connectors are scaffolding only; D6 is not complete until end-to-end integration is tested.
+Integrate the D5-evaluated forecasting model into a tested API and user interface, with controlled market-data refresh and ongoing data/model monitoring. Existing backend/frontend/connectors provide the starting scaffold; D6 is active and is not complete until end-to-end integration is tested.
 
 ## Inputs and data
 - D5-approved model artefact and model card.
@@ -27,6 +27,10 @@ Architecture and API contract; integrated prediction service; API/UI tests; refr
 
 ## Folder map
 01_INPUTS approved model/features; 02_WORKING implementation/tests; 03_DELIVERABLES deployable app/runbook; 04_EVIDENCE test reports/logs/screens; 05_REFERENCES deployment/security references.
+
+## Current phase status
+
+D1–D5 are complete. D6 is the active implementation phase. Work must preserve the D5 model choice, evaluation metrics, feature definitions and forecast-origin limitations. Any model change or retraining must be separately documented and evaluated rather than silently substituted during deployment.
 
 ## Exit gate
 End-to-end application works with D5-approved model, secure configuration, tests and monitoring plan.
