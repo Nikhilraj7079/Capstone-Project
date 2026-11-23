@@ -40,17 +40,27 @@ The Bloomberg Terminal exports are the actual source for the collected workbook 
 
 Every new dataset version must record source file names, SHA-256, observation coverage, units, transformation version, row counts, data-quality checks and publication/availability dates where known.
 
-## 4. D5 evaluation data record — 15 November 2026 memorandum
+## 4. D5 evaluation data record — D5-v1 memorandum (15 November 2026)
 
-The submitted D5 evaluation memorandum records:
+**Received source files (GitHub binary placement remains separately verifiable):**
+- `ANCP_Team-K_D5_v1.pdf` — four-page executive decision memorandum; SHA-256 `9055c5e0e35a3dd7e7ea88e36e03929f8d00a131af0d7808ad36fa787cd74c82`.
+- `ML_Model_Training(6).ipynb` — updated model-training/evaluation notebook; SHA-256 `3e8a2b8a255450cddee32fe5d3bd26e1ac14dd6e4ed7b33f81e3406de7948310`.
+- `ml_model_training(2).py` — Python training/evaluation script; SHA-256 `31abe74c8db7d247780a35b83b95bf1bb546120e3b8a4b31b86766670b9bea4f`.
+
+The D5 memorandum records:
 - 38 raw quarterly observations from 2017 Q1 to 2026 Q2;
 - 34 usable supervised observations after target/lag/rolling feature construction;
-- ten engineered features;
-- chronological split: 20 train, 7 validation, 7 test;
+- ten engineered features: EBITDA Margin and lag/rolling features, USD/INR current and lagged, monthly oil benchmark current and lagged plus rolling mean, CPI and WPI;
+- chronological split: 20 train, 7 validation, 7 test, without shuffling;
 - locked test period: 2024 Q3–2026 Q1;
-- selected Seasonal Naive validation MAE 7.47 pp and test MAE/RMSE/MASE 3.95/4.71/0.24.
+- selected Seasonal Naive validation MAE 7.47 pp and test MAE/RMSE/MASE 3.95/4.71/0.24;
+- corrected 2026 Q3 Seasonal Naive point forecast 26.11%, with empirical ±9.24 pp risk buffer (16.9%–35.4%), not a model-native prediction interval.
 
-**Data limitation:** the exact source workbook hash and original model execution environment are not captured in the submitted artifacts. The D4 notebook expects `EDA ANALYSIS.xlsx` / `Sheet1` and the monthly oil benchmark quarterly-mean column. Do not substitute a newer workbook without reconciling column schema, quarterly values and financial alignment. The D5 report's point-in-time condition requires current-quarter EBITDA and macro means to be final and available at the forecast date; otherwise features must be lagged or separately forecast.
+**Metric provenance:** the memorandum says Seasonal Naive and Historical Mean test results reproduce the saved notebook test-results table. Candidate test metrics for ETS, Gradient Boosting, XGBoost, Random Forest and regularised linear models are reconstructed from chart-generation code. Keep this distinction in downstream reporting.
+
+**Data limitation:** the exact source workbook hash and original model execution environment are not captured in the submitted artifacts. The notebook/script expect `EDA ANALYSIS.xlsx` / `Sheet1` and the monthly oil benchmark quarterly-mean column, alongside exact required columns documented in [M5 inputs](../milestones/M5_D5_Model_Evaluation/01_INPUTS/README.md). The source workbook was not included with the three newly received D5 files. Do not substitute another workbook without reconciling schema, quarterly values and financial alignment. Current-quarter EBITDA and macro means must be final and available at the forecast date; otherwise features must be lagged or separately forecast.
+
+See the [M5 data and evaluation record](../milestones/M5_D5_Model_Evaluation/README.md), [M5 evidence](../milestones/M5_D5_Model_Evaluation/04_EVIDENCE/README.md) and [M5 manifest](../milestones/M5_D5_Model_Evaluation/MILESTONE_MANIFEST.csv).
 
 ## 5. Important modelling and governance rules
 
