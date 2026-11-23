@@ -1,16 +1,15 @@
 file,description,status
-README.md,D5 scope and required evidence,Included
-D5_Evaluation_Report.pdf,Maximum-five-page evaluation report,Pending
-notebooks/D5_rolling_origin_evaluation.ipynb,Rolling-origin backtest,Pending
-experiments/D5_experiment_log.csv,Repeatable run tracker,Pending
-experiments/D5_error_analysis.csv,Quarter-level residual diagnostics,Pending
-experiments/D5_metrics.json,Final validation/test metrics,Pending
-MILESTONE_CONTROL.md,Milestone scope inputs outputs and acceptance criteria,MILESTONE_CONTROL.md,Included
-DELIVERABLES_CHECKLIST.md,Review and closure checklist,DELIVERABLES_CHECKLIST.md,Included
-MILESTONE_CONTROL.md,Milestone scope and acceptance criteria,MILESTONE_CONTROL.md,Included
-DELIVERABLES_CHECKLIST.md,Deliverable checklist,DELIVERABLES_CHECKLIST.md,Included
-01_INPUTS/README.md,01_INPUTS folder index,Included
-02_WORKING/README.md,02_WORKING folder index,Included
-03_DELIVERABLES/README.md,03_DELIVERABLES folder index,Included
-04_EVIDENCE/README.md,04_EVIDENCE folder index,Included
-05_REFERENCES/README.md,05_REFERENCES folder index,Included
+README.md,D5 scope and data/evaluation summary,Included
+01_INPUTS/README.md,Input data vintage and feature contract,Included
+02_WORKING/README.md,Notebook and Python script index,Included
+03_DELIVERABLES/README.md,D5 memorandum index,Included
+04_EVIDENCE/README.md,Metrics leakage audit and robustness evidence,Included
+05_REFERENCES/README.md,Methods and source references,Included
+ANCP_Team-K_D5_v1.pdf,Four-page D5 executive decision memorandum,Received - GitHub binary upload pending
+ML_Model_Training(6).ipynb,Updated training and evaluation notebook,Received - GitHub binary upload pending
+ml_model_training(2).py,Python training and evaluation script,Received - GitHub binary upload pending
+EDA ANALYSIS.xlsx,Exact source workbook required by notebook,Not received in this update - source version/hash still to be pinned
+D5_rolling_origin_evaluation.ipynb,Recommended rolling-origin extension,Pending
+D5_experiment_log.csv,Repeatable run tracker,Pending
+D5_error_analysis.csv,Quarter-level residual diagnostics export,Pending
+D5_metrics.json,Machine-readable final metrics export,Pending
