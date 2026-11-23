@@ -2,11 +2,12 @@
 
 ## D5-v1 — Executive Decision Memorandum
 
-- **Received filename:** `ANCP_T___D5_v1 (1).pdf`
-- **Canonical intended repository filename:** `ANCP_T##_D5_v1.pdf`
+- **Received filename:** `ANCP_Team-K_D5_v1.pdf`
 - **Pages:** 4
 - **Memo date:** 15 November 2026
-- **Repository binary status:** received; binary commit is pending.
+- **Title:** Executive Decision Memorandum — D5 Model Evaluation & Validation, Next-Quarter EBITDA Margin Forecast.
+- **SHA-256:** `9055c5e0e35a3dd7e7ea88e36e03929f8d00a131af0d7808ad36fa787cd74c82`
+- **GitHub binary status:** pending upload/verification; this README is an index, not the PDF itself.
 
 The memorandum covers:
 1. Executive model decision and forecast summary.
@@ -18,8 +19,8 @@ The memorandum covers:
 
 **Decision:** Seasonal Naive is the primary one-quarter-ahead benchmark; ETS and Gradient Boosting are secondary cross-checks.
 
-**Key metrics:** validation MAE 7.47 pp; test MAE 3.95 pp; test RMSE 4.71 pp; test MASE 0.24.
+**Selected-model metrics:** validation MAE 7.47 pp; test MAE 3.95 pp; test RMSE 4.71 pp; test MASE 0.24.
 
-**Corrected forecast:** 26.11% for 2026 Q3, with an empirical ±9.24 pp band (16.9%–35.4%). The band is not a model-native confidence interval.
+**Corrected forecast:** 26.11% for 2026 Q3. The memo gives an empirical ±9.24 pp band (16.9%–35.4%); this is a risk buffer, not a model-native confidence interval.
 
-The report is a completed D5 submission. Its limitations and follow-up recommendations are recorded in the [M5 overview](../README.md).
+See the [M5 overview](../README.md) for the full data record, results and limitations.
