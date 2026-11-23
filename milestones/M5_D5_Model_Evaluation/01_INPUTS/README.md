@@ -1,23 +1,25 @@
-# M5 / D5 — Evaluation Inputs
-
-**Status:** Todo — evaluation has not started.
+# M5 — Inputs and Data Contract
 
 ## Required upstream inputs
+1. D4 next-quarter EBITDA-margin modelling definition and feature schema.
+2. D4 assignment notebook and model settings.
+3. Exact quarterly input workbook used for D4/D5 evaluation (the memo says 38 raw quarters, 34 supervised rows).
+4. M2 source register and point-in-time availability rules.
+5. M3 EDA handoff and known data-quality caveats.
 
-| Input | Owner | Required version/control |
-|---|---|---|
-| Selected EBITDA model and preprocessing | M4 / D4 | Commit ID, model version, environment and feature schema |
-| Model-ready dataset | M4 / D4 | Exact path, SHA-256, target definition and date coverage |
-| Baseline and split protocol | M4 / D4 | Baseline definition and chronological boundaries |
-| Data provenance | M2 / D2 | Source IDs, units, observation dates and publication/availability metadata |
-| EDA caveats | M3 / D3 | 38-quarter sample, Brent proxy and target-validation limitations |
+## Submitted D5 data vintage description
+The D5 memorandum records 38 raw quarterly observations from 2017 Q1 to 2026 Q2 and 34 usable supervised rows. It uses ten engineered features and a chronological split of 20 train / 7 validation / 7 test. The locked test targets run from 2024 Q3 to 2026 Q1.
 
-## No independent training dataset
+**Important:** the exact source workbook hash/version and original model execution environment were not captured in the submitted D5 memo. The D4 notebook expects `EDA ANALYSIS.xlsx`, worksheet `Sheet1`, with the monthly oil benchmark quarterly-mean field. Do not label the D5 vintage fully reproducible until that exact workbook is pinned and hashed.
 
-M5 must not define a new target or silently replace the M4 dataset. Store the frozen evaluation snapshot or controlled reference to the exact M4 artifact, plus D5-specific predictions and errors under 04_EVIDENCE/.
+## Evaluation contract
+- Target: next-quarter EBITDA Margin (%).
+- Forecast horizon: one quarter.
+- Preserve chronology; do not shuffle.
+- Model selection uses validation MAE only.
+- The final test block is used for holdout evaluation, not model selection.
+- Inputs must be available at the forecast origin. If current-quarter values are not yet final, shift or forecast them separately.
+- Global Brent/oil proxy is not IndiGo's actual ATF cost.
 
-## Planned evaluation outputs
-
-Rolling-origin forecast origins and target quarters; actual versus predicted EBITDA Margin; MAE/RMSE by fold; baseline-relative errors; residual analysis; robustness results; uncertainty/calibration where supported; and model/data version manifest.
-
-M5 remains Todo until M4 candidate and evaluation protocol are stable.
+## Source ownership
+M2 owns original source lineage; M3 owns EDA panel and exploratory outputs; M4 owns the modelling data/features; M5 owns evaluation predictions/errors and evaluation evidence. Do not duplicate or silently replace upstream workbooks.
