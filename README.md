@@ -12,22 +12,26 @@
 |---|---|---|---|
 | M1 | D1 — Project Charter | **Completed** | Revised EBITDA-focused project scope and charter records |
 | M2 | D2 — Data Audit | **Completed** | Source register, data dictionary, audit and data-governance records |
-| M3 | D3 — Exploratory Data Analysis | **Completed with reproducibility caveat** | Executed EBITDA-margin EDA notebook and 38-quarter analysis; exact source workbook reconciliation is still required for a clean rerun |
-| M4 | D4 — Model Training | **In Progress** | D4 expanded training report and updated model-training notebook received; reproducibility/data-vintage and model handoff controls remain open |
-| M5 | D5 — Model Evaluation & Validation | **Completed with documented limitations** | D5 executive decision memorandum submitted; locked chronological holdout, leakage audit, error-cost assessment and forecast-risk discussion documented |
-| M6 | D6 — Deployment & Monitoring | **Todo** | Build and validate the application using the approved D5 model and feature contract |
+| M3 | D3 — Exploratory Data Analysis | **Completed** | Executed EBITDA-margin EDA notebook and 38-quarter analysis; source-workbook rerun caveat retained as a follow-up note |
+| M4 | D4 — Model Training | **Completed** | D4 expanded training report and updated model-training notebook submitted; reproducibility/data-vintage caveats remain documented for D6 handoff |
+| M5 | D5 — Model Evaluation & Validation | **Completed** | D5 executive decision memorandum submitted; locked chronological holdout, leakage audit, error-cost assessment and forecast-risk discussion documented |
+| M6 | D6 — Deployment & Monitoring | **In Progress** | Integrate the D5-evaluated model and feature contract; complete API/UI, data-refresh, testing and monitoring workflows |
 | M7 | D7 — Final Communication | **Todo** | Final report, model card, presentation, speaker notes and demo |
 
 For the complete milestone sequence, see [Milestone Register](milestones/MILESTONE_REGISTER.csv), [Milestone Archive](milestones/README.md), and [Project Status and Work Log](docs/PROJECT_STATUS_AND_WORKLOG.md).
 
-## Latest project update — D4 and D5
+## Latest project update — D1 to D6
+
+**Current phase: M6 / D6 — Deployment & Monitoring (In Progress). D1, D2, D3, D4 and D5 are recorded as completed.**
+
+
 
 ### M4 / D4 — Model Training
 - Report: `ANCP_T##_D4_Expanded_Model_Training_Report.pdf` — received; GitHub binary placement is pending.
 - Notebook: `ML_Model_Training(5).ipynb` — latest notebook received; GitHub binary placement is pending.
 - D4 modelling record: 38 raw quarterly observations, 34 usable supervised rows, 10 engineered features and a chronological 20 / 7 / 7 train-validation-test split.
 - Nine candidate approaches were compared. Seasonal Naive had the lowest validation MAE of 7.470.
-- D4 remains **In Progress** until the exact source workbook/version is pinned, the notebook is clean-run with environment metadata, and forecast-time feature availability is verified.
+- D4 is **Completed** as a submitted modelling deliverable. Exact source workbook/version, clean-run environment and forecast-time feature availability remain documented reproducibility follow-ups for the deployment handoff.
 
 See [M4 / D4 README](milestones/M4_D4_Modelling/README.md).
 
@@ -81,7 +85,7 @@ Seasonal Naive is a benchmark, not a macro-sensitive model. It cannot answer cru
 
 ## Product development status
 
-The planned product includes a Python data/ML backend, API, interactive web interface, data refresh, scenario analysis and monitoring. The D5 evaluation memo is not proof that deployment is complete. M6 remains Todo until the D5-approved model and feature contract are integrated and the API/UI, refresh, data health and monitoring workflow are tested.
+The planned product includes a Python data/ML backend, API, interactive web interface, data refresh, scenario analysis and monitoring. The D5 evaluation memo is not proof that deployment is complete. M6 is now **In Progress**. The D5-evaluated model and feature contract are the deployment inputs; API/UI integration, refresh, data health, testing and monitoring are the active work.
 
 ## Important project links
 
