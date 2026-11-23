@@ -1,272 +1,97 @@
 # IndiGo Profitability Intelligence System
 
-**Integrated market-sensitive machine-learning model for forecasting IndiGo's business profitability**  
-**Capstone:** PGDM Business Analytics · **Modules:** M1–M7 · **Deliverables:** D1–D7
+**Capstone:** PGDM Business Analytics · **Modules:** M1–M7 · **Deliverables:** D1–D7  
+**Primary forecast target:** Next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100  
+**Repository owner:** Nikhilraj7079
 
+> This project forecasts IndiGo's operating profitability, not its share price. The primary modelling target is EBITDA Margin, not PAT Margin or EBITDAR.
 
+## Project status
 
-
-For the live Todo / In Progress / Done issue tracker and milestone delivery sequence, see [GitHub Project Board and Delivery Workflow](docs/GITHUB_PROJECT_BOARD.md). For the detailed completed/in-progress/next-step register, see [Project Status and Work Log](docs/PROJECT_STATUS_AND_WORKLOG.md). For data lineage, the fiscal-quarter and point-in-time rules, quality checks, dataset versioning and end-to-end flow, see [Workflow and Data Governance](docs/WORKFLOW_AND_DATA_GOVERNANCE.md). Use [Ongoing Project Context](docs/PROJECT_CONTEXT_FOR_ONGOING_WORK.md) as the persistent working brief for future project updates.
-
-
-## Milestone-wise evaluation folders
-
-| Milestone | Deliverable | Status | Folder |
+| Module | Deliverable | Status | Evidence / next step |
 |---|---|---|---|
-| M1 | D1 Project Charter | Completed | [M1_D1_Project_Charter](milestones/M1_D1_Project_Charter/) |
-| M2 | D2 Data Audit | Completed | [M2_D2_Data_Audit](milestones/M2_D2_Data_Audit/) |
-| M3 | D3 Exploratory Data Analysis | Completed | [M3_D3_Exploratory_Data_Analysis](milestones/M3_D3_Exploratory_Data_Analysis/) |
-| M4 | D4 Modelling | In Progress | [M4_D4_Modelling](milestones/M4_D4_Modelling/) |
-| M5 | D5 Model Evaluation | Todo | [M5_D5_Model_Evaluation](milestones/M5_D5_Model_Evaluation/) |
-| M6 | D6 Deployment and Monitoring | Todo | [M6_D6_Deployment_Monitoring](milestones/M6_D6_Deployment_Monitoring/) |
-| M7 | D7 Final Communication | Todo | [M7_D7_Final_Communication](milestones/M7_D7_Final_Communication/) |
+| M1 | D1 — Project Charter | **Completed** | Revised EBITDA-focused project scope and charter records |
+| M2 | D2 — Data Audit | **Completed** | Source register, data dictionary, audit and data-governance records |
+| M3 | D3 — Exploratory Data Analysis | **Completed with reproducibility caveat** | Executed EBITDA-margin EDA notebook and 38-quarter analysis; exact source workbook reconciliation is still required for a clean rerun |
+| M4 | D4 — Model Training | **In Progress** | D4 expanded training report and updated model-training notebook received; reproducibility/data-vintage and model handoff controls remain open |
+| M5 | D5 — Model Evaluation & Validation | **Completed with documented limitations** | D5 executive decision memorandum submitted; locked chronological holdout, leakage audit, error-cost assessment and forecast-risk discussion documented |
+| M6 | D6 — Deployment & Monitoring | **Todo** | Build and validate the application using the approved D5 model and feature contract |
+| M7 | D7 — Final Communication | **Todo** | Final report, model card, presentation, speaker notes and demo |
 
-Canonical datasets are indexed in [data/README.md](data/README.md); M2 and M4 each include a milestone-specific data index and checksum references. See [milestones/README.md](milestones/README.md) for the milestone index and [MILESTONE_REGISTER.csv](milestones/MILESTONE_REGISTER.csv) for status, evidence and next gates. Each milestone folder contains its own README and file manifest. The active M4 / D4 documentation, assignment notebook, expanded report and experiment evidence are indexed in the [M4 / D4 milestone README](milestones/M4_D4_Modelling/README.md). The top-level [README_D4.md](README_D4.md) is retained only as a legacy PAT-margin experiment record and is not the active project target.
+For the complete milestone sequence, see [Milestone Register](milestones/MILESTONE_REGISTER.csv), [Milestone Archive](milestones/README.md), and [Project Status and Work Log](docs/PROJECT_STATUS_AND_WORKLOG.md).
 
+## Latest project update — D4 and D5
 
+### M4 / D4 — Model Training
+- Report: `ANCP_T##_D4_Expanded_Model_Training_Report.pdf` — received; GitHub binary placement is pending.
+- Notebook: `ML_Model_Training(5).ipynb` — latest notebook received; GitHub binary placement is pending.
+- D4 modelling record: 38 raw quarterly observations, 34 usable supervised rows, 10 engineered features and a chronological 20 / 7 / 7 train-validation-test split.
+- Nine candidate approaches were compared. Seasonal Naive had the lowest validation MAE of 7.470.
+- D4 remains **In Progress** until the exact source workbook/version is pinned, the notebook is clean-run with environment metadata, and forecast-time feature availability is verified.
 
-## M4 / D4 — current modelling checkpoint
+See [M4 / D4 README](milestones/M4_D4_Modelling/README.md).
 
-**Status: In Progress.** The current project target remains next-quarter **EBITDA Margin**. The D4 assignment artifacts and their locations are:
+### M5 / D5 — Model Evaluation & Validation
+- Evaluation memorandum: `ANCP_T___D5_v1.pdf` — received; GitHub binary placement is pending.
+- D5 records a locked seven-quarter holdout from 2024 Q3 to 2026 Q1 and a leakage-control checklist.
+- Selected benchmark: Seasonal Naive.
+- Validation MAE: **7.47 percentage points**.
+- Holdout test MAE / RMSE / MASE: **3.95 / 4.71 / 0.24**.
+- D5 corrects the earlier D4 draft's next-quarter point forecast: under the documented `shift(3)` seasonal-naive alignment, the 2026 Q3 point forecast is **26.11%**, not 29.93%. The memorandum reports an empirical ±9.24 percentage-point band (16.9%–35.4%); this is a risk buffer, not a model-native prediction interval.
+- The D5 memo documents small-sample, forecast-timing, oil-proxy and regime-change limitations. Rolling-origin backtesting remains a recommended extension before production use.
 
-- [M4 / D4 milestone overview](milestones/M4_D4_Modelling/README.md)
-- Five-page D4 report: `ANCP_T##_D4_Expanded_Model_Training_Report.pdf` — received 18-Nov-2026; GitHub binary commit is pending.
-- ML Model Training notebook: `ML_Model_Training(1).ipynb` — received 18-Nov-2026; saved outputs reviewed; GitHub binary commit is pending.
-- [D4 experiment log and reproducibility guide](milestones/M4_D4_Modelling/04_EVIDENCE/README.md)
-- [M4 D4 deliverables index](milestones/M4_D4_Modelling/03_DELIVERABLES/README.md)
-- [Structured M4 experiment outputs](milestones/M4_D4_Modelling/experiments/)
+See [M5 / D5 README](milestones/M5_D5_Model_Evaluation/README.md).
 
-The five-page report explains the data, engineered features, nine model families, chronological validation/test performance and actual-versus-predicted test values. The experiment log records metric provenance. The exact source assignment workbook is not included, so a clean notebook run is not yet reproduced. M4 remains open until the input data hash, execution environment and forecast-date information-availability controls are verified, and the broader pipeline's data lineage, tests and handoff criteria are satisfied. The legacy PAT-margin experiment in [README_D4.md](README_D4.md) must not be confused with the adopted EBITDA Margin target.
+## Module and deliverable navigation
 
-## Project vision
-
-Build an end-to-end forecasting product that combines the historical IndiGo financial and macro/market dataset already assembled for the capstone with selected data refreshed from external web APIs. The live prototype uses Alpha Vantage for USD/INR, OilPriceAPI for Brent, and the official MoSPI eSankhyiki API for monthly CPI and WPI. IndiGo financial results are updated after official quarterly releases. No Bloomberg Terminal session is required to run the live API connectors. A Python data/ML backend exposes forecasts through an API; a single HTML/CSS/JavaScript application lets users inspect inputs, market observations, next-quarter EBITDA-margin forecasts, scenarios, model status and data health.
-
-**The project predicts IndiGo business profitability, not its stock price.** The adopted primary target is next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100. The revised D1 charter establishes EBITDA Margin as the primary analytical output. The older D1 PDF is not retained in the M1 milestone; the current revised DOCX is recorded in M1, with its binary upload status shown in the M1 deliverables index. EBITDA and EBITDAR are not interchangeable. The model is the core technical deliverable; the HTML application is the user interface, not a substitute for ML experimentation and evaluation.
-
-> This is an academic prototype using licensed Bloomberg extracts and aggregate financial/market data, plus public reference sources where used for validation. It is not commissioned by or endorsed by IndiGo and does not reveal unpublished actual results. Forecasts are estimates and must be presented with evaluation results and limitations.
-
-## Primary business question
-
-Can historical IndiGo financial performance and public/authorized macroeconomic indicators be combined to forecast next-quarter EBITDA Margin more accurately than a simple historical baseline, and how does that forecast change under alternative fuel-price, USD/INR, inflation and demand scenarios?
-
-**Adopted project primary target:**  
-EBITDA Margin (%) = EBITDA / Revenue from Operations × 100
-
-**Approved D1 project target:** EBITDA Margin (%) = EBITDA / Revenue from Operations × 100. This is the sole primary modelling target for data preparation, EDA, forecasting, model evaluation and application development. See [M1 scope decision](milestones/M1_D1_Project_Charter/EVALUATION_RECORD.md#project-scope-decision-8-november-2026).
-
-**Forecast horizon:** one quarter ahead. The pipeline may refresh the latest valid inputs, but it cannot know an unpublished current-quarter profit.
-
-## Product capabilities planned
-
-- Import or refresh latest available financial, market and macroeconomic information.
-- Validate source dates, units, missing values, data freshness and feature availability at forecast time.
-- Produce a next-quarter EBITDA-margin forecast using the same preprocessing as model training.
-- Compare models using chronological validation and a simple baseline.
-- Show inputs used, key contributing factors and reliability/uncertainty information where supported by evaluation.
-- Run low-cost/favourable, base and high-cost/adverse scenarios where assumptions are defensible.
-- Store forecast metadata so predictions can be compared with actual results once published.
-- Monitor input quality, freshness, feature drift, prediction errors and model version.
-
-## Planned technical architecture
-
-| Layer | Responsibility | Candidate technology |
-|---|---|---|
-| Data pipeline | Collect/import, clean, align, document and store observations | Python, pandas, CSV/Parquet/SQLite |
-| Feature engineering | Margins, lags, changes, rolling summaries, seasonality and justified interactions | pandas, NumPy |
-| ML engine | Baseline, candidate training, time-ordered validation and prediction | scikit-learn |
-| API | Validate requests and expose prediction/scenario functions | FastAPI or Flask |
-| Frontend | Forecast overview, market inputs, scenarios, historical performance and model/data status | HTML, CSS, JavaScript |
-| Monitoring | Data health, prediction log, model version, errors and retraining triggers | Python logs / stored metrics |
-
-## Data actually collected to date (Bloomberg Terminal exports)
-
-Canonical source workbooks and the pinned quarterly data snapshot are indexed in the repository: [raw Bloomberg export](data/raw/CP%284%29.xlsx), [master indicators](data/raw/CP%20Master%20Data%283%29.xlsx), and [D4-v1 quarterly derived workbook](data/processed/Final_Quarterly_Data%281%29.xlsx). The separate EDA Analysis Excel workbook has been removed from M3; the current D3 deliverable is the executed notebook linked below. See the [data package manifest](docs/Data_Package_Manifest.md) for source inventory and version details.
-
-**Primary data provider:** [Bloomberg Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>) and [Bloomberg DATA](<https://data.bloomberg.com/>). Bloomberg terminal exports do not provide a public, unauthenticated download URL for each licensed series, so the table records the exact Bloomberg security identifiers and field mnemonics. The public Bloomberg product links are source/access references; they are not direct links to the downloaded workbook. [Bloomberg's company profile for InterGlobe Aviation](<https://www.bloomberg.com/profile/company/INDIGO%3AIN>) identifies the company security. Independent official links in the last column are for cross-checking definitions/results only; they were not the source of the uploaded Bloomberg exports.
-
-| Category | Data actually present in the uploaded workbooks | Bloomberg security / fields actually shown | Coverage, validation reference and status |
-|---|---|---|---|
-| Company financials | Quarterly Revenue, Net Income (GAAP) and EBITDA; PAT-margin and EBITDA-margin calculations derived from the exported rows. | **InterGlobe Aviation Ltd (`INDIGO IN`), BBG GAAP**. Bloomberg field IDs: Revenue `SALES_REV_TURN`; Net Income, GAAP `NET_INCOME`; EBITDA `EBITDA`. Workbook unit note: millions of INR except per-share items. | Raw statement dates run from 31 Mar 2017 to 30 Jun 2026 for actual periods; 30 Sep and 31 Dec 2026 are marked `Est` and must not be treated as actual results. Cross-check line-item definitions and reported figures against [IndiGo's official quarterly results](<https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html>). `NET_INCOME` is used provisionally as the PAT component; reconcile it and the Revenue field to the exact Indian financial-statement line items before modelling. The current export has EBITDA, **not EBITDAR**. |
-| Currency | Monthly USD/INR observations; `PX_LAST` is used in the current quarterly-mean workbook, and `PX_BID` is also present in the raw export. | **`USDINR REGN Curncy`**, period `M`; fields `PX_LAST`, `PX_BID`. | Monthly data begin in Jan 2015. A row dated **30 Oct 2026** appears in the export, after the 28 Oct 2026 review date; exclude it from any as-of analysis. This is a monthly series, not the daily FX series described in the earlier candidate table. [RBI's reference-rate archive](<https://www.rbi.org.in/scripts/ReferenceRateArchive.aspx>) is an independent comparison source, not the source of this workbook's values. |
-| CPI inflation | Monthly CPI inflation indicator values from the Bloomberg export. | **`INFUTOTY Index`**, period `M`; field `PX_LAST`; workbook sheet `cpi`. | Observations run from Jan 2015 through Sep 2026. Confirm the exact Bloomberg instrument description and series definition in Terminal before using it as a named CPI measure. [MoSPI's CPI catalogue](<https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI>) is for definition/series cross-checking, not the source of the uploaded values. |
-| WPI inflation | Monthly WPI inflation indicator values from the Bloomberg export. | **`INBGWPIY Index`**, period `M`; field `PX_LAST`; workbook sheet `wpi`. | Observations run from Oct 2006 through Sep 2026. Verify the precise Bloomberg series definition and its linkage to the WPI base-year revision before analysis. The [Office of the Economic Adviser WPI data page](<https://eaindustry.nic.in/download_data_2223.asp>) is an official cross-check, not the source of the uploaded values. |
-| Oil / market benchmark | Daily and monthly USD oil-price observations. | **`EUCRBRDT Index`**, field `PX_LAST`; daily source sheet `co new`, monthly source sheet `co new monthly`; workbook records currency as USD. | Daily records run from 2 Jan 2015 through 19 Oct 2026; monthly records run from Jan 2015 through Sep 2026. This ticker identifies **Dated Brent crude**, not Indian ATF and not IndiGo's negotiated fuel cost. Keep it labelled as a Brent/oil benchmark proxy unless another series is collected. Bloomberg access reference: [Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>) / [Bloomberg DATA](<https://data.bloomberg.com/>); a general series reference is also available via the [ECB financial-market data catalogue](https://data.ecb.europa.eu/data/datasets/FM). |
-
-**Derived quarterly file:** `Final_Quarterly_Data.xlsx` contains quarterly summaries of the five source categories above plus calculated PAT/EBITDA margins. It is a derived workbook, not a sixth input source. Its current financial alignment and calendar-quarter labels still need correction before model use. The time key will be derived using Indian fiscal quarters.
-
-### Source and data-use notes
-
-- The uploaded Bloomberg exports are the **actual data source** for the variables listed above. The official RBI, MoSPI and IndiGo pages linked in the inventory are independent validation references, not the source of the uploaded Bloomberg values.
-- Bloomberg public references: [Bloomberg Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>), [Bloomberg DATA](<https://data.bloomberg.com/>), and [InterGlobe Aviation company profile](<https://www.bloomberg.com/profile/company/INDIGO%3AIN>). The exact security identifiers and field mnemonics above are required to reproduce the terminal extraction.
-- Independent cross-check links: [IndiGo quarterly results](<https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html>), [RBI reference-rate archive](<https://www.rbi.org.in/scripts/ReferenceRateArchive.aspx>), [MoSPI CPI catalogue](<https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI>), and [Office of the Economic Adviser WPI data](<https://eaindustry.nic.in/download_data_2223.asp>).
-- Raw Bloomberg workbooks, values and output-filled Excel/HTML files stay in authorized local/private storage unless your Bloomberg/institutional licence explicitly permits redistribution. The public repository contains source identifiers, code and documentation only.
-- This dataset version is **not ready for modelling** until the financial source alignment, actual-vs-estimate status, fiscal-quarter labels, source publication-date availability and instrument definitions have been checked.
-
-
-## External web API integration
-
-The application now refreshes four market and macro inputs through server-side Python connectors:
-
-| Data | Provider | Refresh method |
-|---|---|---|
-| USD/INR | [Alpha Vantage](https://www.alphavantage.co/documentation/) | Current USD-to-INR exchange-rate API |
-| Brent crude | [OilPriceAPI](https://docs.oilpriceapi.com/api-reference/prices/latest) | Latest Brent benchmark quote API (`BRENT_CRUDE_USD`) |
-| CPI | [MoSPI eSankhyiki](https://esankhyiki.mospi.gov.in/macroindicators?product=cpi&tab=api) | Official monthly All-India General Combined series; base year 2012 by default |
-| WPI | [MoSPI eSankhyiki](https://esankhyiki.mospi.gov.in/macroindicators?product=wpi&tab=api) | Official monthly All Commodities series; base year 2022-23 by default |
-
-The four feeds are called independently, so a failure at one provider does not prevent successful sources from updating. The backend normalizes values, records source and fetch timestamps, and stores the last successful observations in a local SQLite database. A cached observation is retained when a provider fails. Monthly CPI/WPI observations use a longer freshness window than FX and Brent.
-
-The CPI connector defaults to MoSPI's `getCPIIndex` endpoint for the 2012-base-year series and extracts All-India General Combined year-on-year inflation. The 2024 route is configurable but should be enabled only after confirming the upstream endpoint is responding correctly. The WPI connector uses `getWpiRecords`, selects the All Commodities aggregate, and computes year-on-year inflation from the index when the response does not supply the inflation percentage. Base years can be changed in `.env`, but only after reconciling the relevant series. The API specifications and NSO client examples are documented in [the live-data integration guide](docs/LIVE_DATA_INTEGRATION.md).
-
-To configure the feeds, copy `.env.example` to `.env`, enter `ALPHAVANTAGE_API_KEY` and `OILPRICEAPI_KEY`, then install requirements and run `uvicorn backend.main:app --reload`. `MOSPI_API_TOKEN` is optional for MoSPI endpoints that allow open access; configure it if the API returns 401/403. Keep every real key in `.env` or the hosting platform's secret manager, never in frontend JavaScript or public GitHub files.
-
-- `GET /api/market/latest` returns the latest stored observations for all four feeds.
-- `POST /api/market/refresh` attempts USD/INR, Brent, CPI and WPI independently and reports each result.
-- `GET /api/sources` returns the source catalogue and update cadence.
-
-CPI and WPI are published monthly, not continuously. IndiGo EBITDA and Revenue from Operations remain quarterly outcomes used to calculate EBITDA Margin, and must only be loaded after publication. Brent is a global benchmark proxy, not Indian ATF or IndiGo's realised fuel cost. Provider quotas, security requirements and data-use/display rights must be checked before public deployment. The current refresh is user-triggered; scheduled refresh can be added at deployment.
-
-## Modelling and evaluation
-
-1. Establish a simple historical baseline.
-2. Test Ridge / Elastic Net as transparent regularized candidates.
-3. Test Random Forest / Gradient Boosting only if sample size and feasibility justify them.
-4. Use chronological train/validation/test splits and rolling-origin backtesting where feasible; do not randomly shuffle quarters.
-5. Fit preprocessing only on data available within each training window.
-6. Compare MAE and RMSE; directional accuracy may be added if defined consistently.
-7. Select the most defensible model based on out-of-sample performance, stability, interpretability and business usefulness—not complexity.
-8. If ML does not beat the baseline, report that honestly and retain the baseline.
-
-Every feature must pass the **forecast-date availability rule**. Latest-market refresh applies to future use only; it must not leak future values into historical evaluation. Scenario analysis is sensitivity testing, not evidence of causal effects.
-
-## Academic deliverables (M1–M7 / D1–D7)
-
-| Module | Deliverable | Expected evidence |
-|---|---|---|
-| M1 | D1 — Project charter | Problem, decision-maker, analytics question, metrics, scope, data plan, risks, roles, meeting log, responsibility matrix |
-| M2 | D2 — Data audit | Source register, coverage, definitions, missingness, access/privacy notes, cleaned dataset, data dictionary |
-| M3 | D3 — EDA | Descriptive analysis, relationships, hypotheses, anomalies, seasonality and insights |
-| M4 | D4 — Modelling checkpoint | Baseline, candidate models, experiments, tuning decisions and experiment log |
-| M5 | D5 — Evaluation memo | Chronological validation, errors, leakage checks, uncertainty and limitations |
-| M6 | D6 — Deployment and monitoring | HTML/API prototype or demo, data refresh, data health, drift, retraining and maintenance |
-| M7 | D7 — Communication | Final report, model card, presentation and technical/business Q&A readiness |
-
-## 12-week roadmap
-
-| Week | Focus | Gate / output |
-|---|---|---|
-| 1 | Scope and feasibility audit | Confirm target, data coverage, source register, repository; decide whether comparable data are sufficient |
-| 2 | Historical data collection | Raw datasets and source register |
-| 3 | Cleaning and alignment | Master dataset, EBITDA Margin and data dictionary |
-| 4 | EDA and hypotheses | EDA notebook, insights, unusual-period review and initial feature list |
-| 5 | Baseline | Baseline forecast, chronological evaluation setup, MAE/RMSE |
-| 6 | Candidate ML models | Model comparison and experiment log |
-| 7 | Evaluation | Unseen-quarter evaluation, leakage and error review |
-| 8 | Prediction engine | Selected/versioned model, preprocessing and scenarios |
-| 9 | HTML and API | Working local application |
-| 10 | Market-data refresh | Validated refresh and prediction workflow |
-| 11 | Deployment and monitoring | Input tests, monitoring plan and retraining triggers |
-| 12 | Final communication | Final report, model card, presentation and demo |
-
-## Main risks
-
-| Risk | Mitigation |
+| Module | Main workspace |
 |---|---|
-| Small quarterly sample | Simple baseline, parsimonious models and time-based validation |
-| Inconsistent data definitions | Source register, dictionary, unit reconciliation and documented transforms |
-| Future-information leakage | Publication-date tracking and chronological evaluation |
-| API/source access limitations | Verified file-import fallback and documented refresh status |
-| Exceptional events or regime changes | Robustness checks, event flags only where reliable, clear limitations |
-| ML underperforms baseline | Keep baseline as formal comparator; simplify if necessary |
-| Integration delays | Freeze the evaluated model before UI integration; build in stages |
+| M1 / D1 — Project Charter | [M1](milestones/M1_D1_Project_Charter/) |
+| M2 / D2 — Data Audit | [M2](milestones/M2_D2_Data_Audit/) |
+| M3 / D3 — Exploratory Data Analysis | [M3](milestones/M3_D3_Exploratory_Data_Analysis/) |
+| M4 / D4 — Model Training | [M4](milestones/M4_D4_Modelling/) |
+| M5 / D5 — Model Evaluation | [M5](milestones/M5_D5_Model_Evaluation/) |
+| M6 / D6 — Deployment & Monitoring | [M6](milestones/M6_D6_Deployment_Monitoring/) |
+| M7 / D7 — Final Communication | [M7](milestones/M7_D7_Final_Communication/) |
 
-## Repository map
+## Data governance and source package
 
-- [Master project plan](docs/Master_Project_Plan.md) — integrated project vision and 12-week work plan.
-- [D1 project charter](docs/Project_Charter.md) — charter, milestones, role matrix and meeting log.
-- [Data dictionary](IndiGo_Data_Dictionary.csv) — candidate variables and preparation controls.
-- frontend/ — HTML/CSS/JS interface.
-- backend/ — API routes and request schemas.
-- src/ — data pipeline, features, training, prediction and scenarios.
-- notebooks/ — data audit, EDA, baseline, experiments and evaluation.
-- data/ — raw and processed data (respect source terms; do not commit sensitive or unlicensed data).
-- models/, tests/, reports/ — model artifacts, tests and project outputs.
+The project data hub is [data/README.md](data/README.md). Data ownership is milestone-specific:
+- M2 owns audited source provenance, definitions and data quality.
+- M3 owns the EDA analysis panel and exploratory outputs.
+- M4 owns the versioned modelling input, features, splits and experiments.
+- M5 freezes and evaluates the M4 model/data vintage and owns evaluation predictions, errors and validation evidence.
+- M6 consumes the D5-approved model and feature contract.
+- M7 reports only traceable, approved evidence.
 
-See the [D1 charter](docs/Project_Charter.md) and [full plan](docs/Master_Project_Plan.md) before implementation.
+The model dataset used by the D4/D5 assignment report contains 38 quarterly observations (2017 Q1–2026 Q2), with 34 usable supervised rows. The notebook expects the monthly oil benchmark quarterly-mean field. Do not substitute another workbook version without reconciling columns, financial alignment and quarter values. Licensed Bloomberg exports and data-derived workbooks must not be published unless the applicable licence permits redistribution.
 
+## Project objective and methodology
 
-## D1 — Project Charter (M1)
+**Business question:** Can historical IndiGo financial performance and available macroeconomic indicators help forecast next-quarter EBITDA Margin, and does the selected model outperform a simple baseline on unseen quarters?
 
-**Current revised deliverable received:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.docx` (9 pages; received 8 November 2026).  
-**SHA-256:** `d96c5cddecd2cb33e5eaceca61c7387b43468481c1d22d0a68f8a295c0a52e9f`
+The D4/D5 assignment uses:
+- EBITDA Margin and lag/rolling features;
+- USD/INR, a monthly crude-oil benchmark proxy, CPI and WPI;
+- chronological 60% / 20% / 20% splitting without random shuffling;
+- MAE, RMSE and MASE for model evaluation;
+- validation MAE for model selection, with the holdout test kept separate.
 
-The revised charter establishes **EBITDA Margin** as the primary analytical output. The project definition, analytics question and data plan are aligned to a one-quarter-ahead EBITDA-margin forecast. The earlier D1 PDF is not included in the repository. The revised EBITDA-focused DOCX is the current D1 source document; its binary upload remains pending.
+Seasonal Naive is a benchmark, not a macro-sensitive model. It cannot answer crude-oil or FX what-if questions. D5 reports that the ranking is provisional because the test set contains only seven quarters. The oil input is a global crude benchmark proxy, not IndiGo's actual ATF landed cost.
 
-- [M1 / D1 milestone folder](milestones/M1_D1_Project_Charter/)
-- [M1 deliverables index](milestones/M1_D1_Project_Charter/03_DELIVERABLES/README.md)
-- [Editable charter baseline](docs/Project_Charter.md)
-- [M1 scope decision and evaluation record](milestones/M1_D1_Project_Charter/EVALUATION_RECORD.md)
+## Product development status
 
-**GitHub binary status:** The revised DOCX has been received and inspected, but its binary upload to GitHub is still pending. The repository records the exact version and checksum; it is not marked as committed.
+The planned product includes a Python data/ML backend, API, interactive web interface, data refresh, scenario analysis and monitoring. The D5 evaluation memo is not proof that deployment is complete. M6 remains Todo until the D5-approved model and feature contract are integrated and the API/UI, refresh, data health and monitoring workflow are tested.
 
-## Phase 1 — data collection and dataset build
+## Important project links
 
-- [Data collection plan](docs/Phase1_Data_Collection_Plan.md) — actual Bloomberg series, fiscal-quarter alignment, publication timing and open data-quality issues.
-- [Master dataset schema](docs/Master_Dataset_Schema.md) — normalized target-quarter schema and leakage controls.
-- [Actual Bloomberg source register](data/source_register.csv) · [Collection tracker](data/collection_tracker.csv).
-- [Bloomberg financial-field mapping template](data/templates/financial_bloomberg_quarterly.csv).
-- [Bloomberg USD/INR monthly template](data/templates/usd_inr_monthly.csv).
-- [Bloomberg CPI-inflation template](data/templates/cpi_inflation_monthly.csv).
-- [Bloomberg WPI-inflation template](data/templates/wpi_inflation_monthly.csv).
-- [Bloomberg Dated Brent daily template](data/templates/brent_daily.csv) · [monthly template](data/templates/brent_monthly.csv).
-- The older [normalized financial template](data/templates/financial_quarterly.csv), [ATF template](data/templates/atf_monthly.csv), [daily FX template](data/templates/usd_inr_daily.csv) and [CPI-index template](data/templates/cpi_monthly.csv) reflect the earlier planned source design, not the current Bloomberg workbook.
-- [Dataset builder](src/build_master_dataset.py) and [point-in-time tests](tests/test_master_dataset_builder.py).
+- [Master Project Plan](docs/Master_Project_Plan.md)
+- [Project Status and Work Log](docs/PROJECT_STATUS_AND_WORKLOG.md)
+- [Workflow and Data Governance](docs/WORKFLOW_AND_DATA_GOVERNANCE.md)
+- [Project Data Hub](data/README.md)
+- [Milestone Register](milestones/MILESTONE_REGISTER.csv)
+- [GitHub Project Board and Delivery Workflow](docs/GITHUB_PROJECT_BOARD.md)
 
-### Dataset build status and next implementation task
+## Academic and usage note
 
-The existing `src/build_master_dataset.py` and original CSV templates were designed around the earlier normalized-source plan (including daily FX and ATF). They are **not yet mapped to the current Bloomberg export**, which contains monthly USD/INR, CPI inflation, WPI inflation, and daily/monthly Dated Brent. Do not place the Excel workbooks in `data/raw/` and expect the current builder to read them directly.
-
-The upcoming source-mapping step must convert the local workbook sheets into normalized CSVs for:
-- financial quarterly values rebuilt from raw `IS` rows;
-- monthly USD/INR;
-- monthly CPI inflation;
-- monthly WPI inflation;
-- daily and monthly Dated Brent;
-
-For the current source IDs, file paths, units and known gaps, see [the actual-source register](data/source_register.csv) and [collection tracker](data/collection_tracker.csv). After the import mapping and fiscal-quarter corrections are implemented, run the master builder and review missingness, publication-date eligibility and leakage checks before modelling.
-
-The script creates one row per **target quarter**, with the forecast cutoff on the last day before that quarter begins. It selects only inputs whose observation period is before the target quarter and whose publication date is no later than the cutoff. The target quarter's own EBITDA and Revenue from Operations are labels used to calculate EBITDA Margin; target-quarter outcomes are never predictors.
-
-The public source templates are headers only. Raw Bloomberg workbooks and working master files are maintained locally in the ignored data folders. The master-data builder and model have not yet been run on a reconciled dataset; do not treat earlier generated quarterly workbooks as training-ready.
-
-## D2 — Data audit (data-v1.0)
-
-The D2 audit report and its three-page datasheet document the audit of the Bloomberg raw export and the supplied master workbook.
-
-- **Audit summary:** [D2 Data Audit Summary](docs/D2_Data_Audit_Summary.md)
-- **Required PDF filename:** `reports/ANCP_T##_D2_v1.pdf` (11 pages total: up to 8 audit-report pages plus 3 datasheet pages).
-- **Provisional coverage:** the raw `IS` export contains actual quarters from 2017-03-31 through 2026-06-30 plus later rows marked as estimates. The earlier 33-row modelling count is not approved for training because the generated master target sheet was misaligned; rebuild and recalculate it from raw actual financials first.
-- **Critical finding:** the supplied master workbook's `Financial source` sheet is shifted by two quarters relative to the raw Bloomberg `IS` sheet. The analytical financial outcomes must be rebuilt from raw `IS` values; do not use the misaligned financial source sheet for modelling.
-- **CPI date check:** the latest raw `CP(4).xlsx` sheet has monthly dates through 2026-09-30; the earlier malformed-date concern was not reproduced in this version. Verify any dates in the derived quarterly file against the raw series and do not manually alter source dates.
-- **Data governance:** Bloomberg source files are proprietary. Do not publish raw exports or derived data unless institutional licence terms permit it. Keep raw exports in authorised private storage.
-- **Feature timing:** use only information available at the forecast cutoff; the next-quarter EBITDA margin is a target, never a predictor.
-- **Downstream D3 handoff:** [Latest executed EBITDA Margin EDA notebook](milestones/M3_D3_Exploratory_Data_Analysis/02_WORKING/ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb). The prior standalone EDA Analysis workbook has been removed; the D3 notebook and its saved outputs are retained in M3.
-
-Keep licensed Bloomberg exports and data-derived workbook values in authorized local/private storage. The public repository should contain code, schemas, source metadata and documentation only unless the applicable licence explicitly permits redistribution. Do not use the earlier generated master dataset until it has been rebuilt from the raw `IS` sheet.
-
-
-## D3 — Exploratory Data Analysis (current executed notebook)
-
-- **Canonical notebook:** [ANCP_T##_D3_EDA_New_Dataset_EXECUTED.ipynb](milestones/M3_D3_Exploratory_Data_Analysis/02_WORKING/ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb). This is the latest executed notebook supplied by the user and the only D3 notebook retained.
-- **Notebook contents:** 34 cells (20 markdown, 14 code), 43 saved outputs and 14 execution counts. The executed outputs are preserved.
-- **Analysis scope:** 38 quarterly observations from 2017-03-31 to 2026-06-30; EBITDA Margin is the sole profitability outcome. Candidate explanatory series are USD/INR, CPI, WPI and daily/monthly oil-benchmark quarterly means.
-- **Descriptive result:** average EBITDA Margin 12.306%, median 15.000%, standard deviation 14.255 percentage points, minimum -36.667% and maximum 29.933%.
-- **Hypothesis results:** USD/INR Spearman rho 0.554 (p < 0.001); monthly oil proxy rho 0.264 (p = 0.109); CPI rho -0.087 (p = 0.605); WPI rho -0.450 (p = 0.005); calendar-quarter Kruskal–Wallis p = 0.125. These are exploratory same-period associations, not causal or forecast-performance results.
-- **Input-file handling:** the separate EDA Analysis Excel workbook has been removed from the M3 folder. The notebook still expects its source workbook `EDA ANALYSIS(5).xlsx` for a clean rerun; that source file is not included in GitHub. The saved notebook outputs remain viewable. Do not substitute `Final_Quarterly_Data(4).xlsx` without reconciliation: its 2020 Q4 EBITDA Margin is -201.391%, materially different from the -20.391% value represented in the previous EDA panel.
-- **Next step:** provide/approve the exact source workbook or reconcile the final quarterly source data; then rerun from a clean clone and refresh the evidence record. Do not use these same-period correlations as next-quarter predictive validation.
-
-
-## Project target scope decision — 8 November 2026
-
-The project team's adopted primary forecast target is **next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100**. This scope decision supersedes the initial PAT-margin proposal in the submitted D1 PDF for subsequent data preparation, EDA, model training, model evaluation and application development. The D1 PDF is preserved unchanged as the original Module 1 submission and is not represented as having originally specified EBITDA Margin. EBITDAR is a distinct measure and is not substituted for EBITDA.
+This is an academic capstone prototype. Forecasts are estimates, not guarantees or financial advice. Results must be presented with their evaluation period, data vintage, assumptions and limitations.
