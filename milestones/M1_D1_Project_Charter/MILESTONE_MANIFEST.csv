@@ -1,11 +1,13 @@
-file,description,canonical_source,record_status
-README.md,"Milestone overview; EBITDA Margin target",milestones/M1_D1_Project_Charter/README.md,Updated
-Project_Charter.md,"Editable charter aligned to EBITDA Margin",docs/Project_Charter.md,Included
-MILESTONE_CONTROL.md,"Milestone scope inputs outputs and acceptance criteria",MILESTONE_CONTROL.md,Included
-DELIVERABLES_CHECKLIST.md,"D1 review and closure checklist",DELIVERABLES_CHECKLIST.md,Updated
-01_INPUTS/README.md,"01_INPUTS folder index",01_INPUTS/README.md,Included
-02_WORKING/README.md,"02_WORKING folder index",02_WORKING/README.md,Included
-03_DELIVERABLES/README.md,"D1 revised DOCX record; no D1 PDF retained",03_DELIVERABLES/README.md,Updated
-04_EVIDENCE/README.md,"04_EVIDENCE folder index",04_EVIDENCE/README.md,Included
-05_REFERENCES/README.md,"05_REFERENCES folder index",05_REFERENCES/README.md,Included
-IndiGo_Macroeconomic_Profitability_Capstone_M1.docx,"Nine-page revised D1 DOCX; EBITDA Margin primary target; SHA-256 d96c5cddecd2cb33e5eaceca61c7387b43468481c1d22d0a68f8a295c0a52e9f","Expected: 03_DELIVERABLES/IndiGo_Macroeconomic_Profitability_Capstone_M1.docx","Received and reviewed locally; GitHub binary upload pending"
+file,description,status
+README.md,M1 scope and charter index,Included
+Project_Charter.md,Editable project charter record,Included
+MILESTONE_CONTROL.md,Milestone scope and acceptance criteria,Included
+DELIVERABLES_CHECKLIST.md,M1 deliverable checklist,Included
+EVALUATION_RECORD.md,M1 evaluation and review record,Included
+01_INPUTS/README.md,Input folder index,Included
+02_WORKING/README.md,Working folder index,Included
+03_DELIVERABLES/README.md,Deliverables folder index,Included
+04_EVIDENCE/README.md,Evidence folder index,Included
+05_REFERENCES/README.md,Reference folder index,Included
+ANCP_TXX_D1_v1.pdf,Four-page submitted D1 Project Charter PDF,Received - GitHub binary upload pending
+IndiGo_Macroeconomic_Profitability_Capstone_M1.docx,Nine-page revised EBITDA-focused D1 DOCX,Previously received - GitHub binary upload pending
