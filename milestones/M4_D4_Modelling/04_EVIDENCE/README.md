@@ -1,26 +1,24 @@
 # D4 — Experiment Evidence and Reproducibility
 
-This folder records the D4-v1 assignment experiment and its reproducibility status for the adopted **next-quarter EBITDA Margin** target.
+This folder records the D4 assignment experiment for the adopted **next-quarter EBITDA Margin** target.
 
-## Assignment artifacts
-- Five-page report: [ANCP_T##_D4_Expanded_Model_Training_Report.pdf](../03_DELIVERABLES/README.md).
-- Notebook: `ML_Model_Training(1).ipynb` in `02_WORKING`.
-- [Experiment log CSV](experiment_log_d4-v1.csv) — candidate validation results, available test metrics, features, parameters, seeds and metric provenance.
+## Received assignment artifacts
+- Five-page expanded report: `ANCP_T##_D4_Expanded_Model_Training_Report(1).pdf` — received 23-Nov-2026; binary upload pending.
+- Updated notebook: `ML_Model_Training(5).ipynb` — received 23-Nov-2026; binary upload pending.
+- [Experiment log CSV](experiment_log_d4-v1.csv).
 - [Run instructions](RUN_D4_v1.md).
 - [Requirements](requirements-d4-v1.txt).
 
 ## Declared setup and results
-- 38 raw quarterly observations; 34 usable supervised rows; 10 features.
-- Chronological split: 20 train / 7 validation / 7 test (60% / 20% / 20%).
-- Nine candidate approaches: Seasonal Naive, Historical Mean, Ridge, Lasso, Elastic Net, Random Forest, Gradient Boosting, XGBoost and ETS.
+- 38 raw quarterly observations; 34 usable supervised rows; ten features.
+- Chronological split: 20 train / 7 validation / 7 test.
+- Nine candidates: Seasonal Naive, Historical Mean, Ridge, Lasso, Elastic Net, Random Forest, Gradient Boosting, XGBoost and ETS.
 - Validation winner: Seasonal Naive, MAE 7.470.
-- Saved holdout metrics: Seasonal Naive MAE 3.948, RMSE 4.714, MASE 0.237; Historical Mean MAE 12.948, RMSE 14.347, MASE 0.777.
-- Test scores for the other candidate models are reconstructed from the chart-generation code in the report; their metric source is explicitly flagged in the CSV.
+- Saved holdout metrics: MAE 3.948, RMSE 4.714, MASE 0.237.
+- D4's earlier report draft displayed a 29.93 point forecast. The later D5 memorandum corrects the 2026 Q3 Seasonal Naive value to 26.11 under the documented shift(3) alignment. Keep the original D4 submission intact and cite D5 for the corrected forecast.
 
-## Recording limitations
-The notebook/report do not capture the original model execution timestamp, the exact input workbook hash/version or a package lockfile. The CSV preserves these as not recorded; 8 November 2026 is the date attached to the earlier evidence-preparation record, not a verified model-run timestamp. The PDF metadata creation date is 10 November 2026 and is also not treated as the experiment run date.
+## Reproducibility limitations
+The exact input workbook hash/version, original model execution timestamp and package lockfile were not captured. The notebook expects `EDA ANALYSIS.xlsx` / `Sheet1` and the monthly oil benchmark quarterly-mean field. The original notebook has saved outputs, but a clean rerun remains pending the exact workbook and complete environment record.
 
-The notebook expects `EDA ANALYSIS.xlsx` / `Sheet1` and the monthly oil benchmark quarterly-mean column. That exact workbook is not supplied with this upload. The original notebook also lacks an imports/setup cell and execution counts. Saved outputs are reviewable; a clean run remains pending the exact workbook and a complete environment record.
-
-## Keep the two M4 experiment tracks separate
-The `experiments/D4_*.csv/json` records are from the earlier structured PAT-margin experiment. The assignment log in this folder is EBITDA-margin modelling. Do not combine their metrics, data versions or target definitions.
+## Keep experiment tracks separate
+Existing `experiments/D4_*.csv/json` records from the earlier structured PAT-margin experiment are legacy evidence. The submitted D4 assignment report/notebook is EBITDA-margin modelling. Do not combine their metrics, target definitions or dataset versions.
