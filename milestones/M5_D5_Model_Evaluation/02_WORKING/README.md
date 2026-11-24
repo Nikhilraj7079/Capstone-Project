@@ -2,7 +2,6 @@
 
 ## Current model-training notebook
 
-<badge-placeholder>
 
 | File | Description | Link |
 |---|---|---|
