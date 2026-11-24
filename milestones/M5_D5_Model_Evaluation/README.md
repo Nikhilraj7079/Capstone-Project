@@ -60,7 +60,7 @@ All MAE and RMSE values are EBITDA Margin percentage points (pp). Values below a
 
 **Saved notebook forecast:** the latest notebook's saved output reports a next-quarter EBITDA Margin forecast of **21.75%** from the final SARIMAX fit. This is the notebook output, not the D5 memorandum's earlier corrected 2026 Q3 Seasonal Naive forecast of 26.11%. These values arise from different model versions/decision contexts and must not be blended.
 
-## 3. Evaluation design and leakage controls
+## 4. Evaluation design and leakage controls
 
 - Target: next-quarter EBITDA Margin; target shifted forward one quarter.
 - Raw history: 38 quarterly observations, 2017 Q1–2026 Q2.
@@ -75,26 +75,6 @@ All MAE and RMSE values are EBITDA Margin percentage points (pp). Values below a
 
 The memo marks the chronological split, causal alignment, scaler isolation, training-only MASE scale and test-set selection discipline as PASS. Foundation-model/LLM memorisation is N/A. Forecast-origin availability is PASS only conditionally on the reporting calendar.
 
-## 4. Reported results
-
-All MAE/RMSE values are EBITDA-margin percentage points (pp).
-
-| Model | Validation MAE | Test MAE | Test RMSE | Test MASE |
-|---|---:|---:|---:|---:|
-| Seasonal Naive (selected) | 7.47 | 3.95 | 4.71 | 0.24 |
-| Historical Mean | 13.79 | 12.95 | 14.35 | 0.78 |
-| ETS (additive trend) | 19.37 | 6.61 | 6.97 | 0.40 |
-| Gradient Boosting | 15.97 | 7.25 | 7.87 | 0.44 |
-| XGBoost | 16.29 | 7.87 | 8.63 | 0.47 |
-| Random Forest | 20.11 | 7.87 | 8.73 | 0.47 |
-| Elastic Net | 38.33 | 20.58 | 22.39 | 1.23 |
-| Ridge | 39.40 | 23.30 | 25.24 | 1.40 |
-| Lasso | 48.86 | 25.88 | 27.92 | 1.55 |
-
-**Metric provenance:** the D5 memo states that Seasonal Naive and Historical Mean test results reproduce the saved notebook test-results table. The other candidate test metrics are reconstructed from the notebook's chart-generation code (Cell 10 reconstruction), not all verbatim from the saved test-results table. Preserve this distinction when quoting the results.
-
-For Seasonal Naive, the memo reports a 95% t-based interval for the mean absolute error of 1.38–6.52 pp, based on seven test errors. It also reports that the confidence interval overlaps those of ETS and Gradient Boosting, so the apparent margin over those models is not statistically conclusive.
-
 ## 5. Forecast output and version reconciliation
 
 - **Latest notebook SARIMAX forecast:** 21.75% next-quarter EBITDA Margin, as displayed in the saved notebook output after refitting SARIMAX on the available observations.
@@ -105,18 +85,18 @@ The three figures refer to different model/version contexts. Use 21.75% when des
 
 ## 6. Business interpretation and error analysis
 
-The memo estimates quarterly revenue of about ₹18,000–20,000 crore, implying roughly ₹180–200 crore per EBITDA-margin percentage point. It frames the selected model's 3.95 pp MAE as roughly ₹710–790 crore of average quarterly cash-flow variance, and a 7.9 pp miss as about ₹1,400–1,580 crore.
+The earlier D5 memorandum estimates quarterly revenue of about ₹18,000–20,000 crore, implying roughly ₹180–200 crore per EBITDA-margin percentage point. Its ₹710–790 crore average quarterly variance estimate is based on the memorandum's Seasonal Naive 3.95 pp test MAE, not the latest notebook's SARIMAX holdout MAE of 14.197 pp. Do not attribute the memorandum's error-cost estimate to SARIMAX.
 
 Errors are asymmetric:
 - Overprediction example: 2024 Q4 predicted 18.83% vs actual 10.95% (+7.88 pp), with potential delayed fuel/FX hedging, over-commitment, liquidity strain and covenant stress.
 - Underprediction example: 2025 Q4 predicted 10.95% vs actual 18.59% (-7.64 pp), with potential over-hedging, idle cash and premature discounting.
 
-The memo notes Seasonal Naive is weaker around Q4 inflections: MAE 2.42 pp on five stable high-margin quarters versus 7.76 pp on two Q4 quarters. It also identifies a 2020 Q4 outlier (-201% margin) in the 27-row refit window as a major issue for linear-model intercepts and extrapolation.
+The earlier D5 memorandum notes Seasonal Naive is weaker around Q4 inflections: MAE 2.42 pp on five stable high-margin quarters versus 7.76 pp on two Q4 quarters. This is memorandum analysis of the Seasonal Naive model, not SARIMAX. It also identifies a 2020 Q4 outlier (-201% margin) in the 27-row refit window as a major issue for linear-model intercepts and extrapolation.
 
 ## 7. Limitations and follow-up
 
 - Seven test quarters are too few for strong generalisation claims; rankings are provisional.
-- Seasonal Naive is insensitive to crude, USD/INR and inflation shocks and cannot answer macro what-if questions.
+- The Seasonal Naive comparator is insensitive to crude, USD/INR and inflation shocks and cannot answer macro what-if questions. SARIMAX includes macroeconomic exogenous inputs, but its weaker holdout result must be considered.
 - Oil is a global crude benchmark proxy, not IndiGo's actual ATF landed cost.
 - The empirical band is a risk buffer, not a model-native interval.
 - Forecast timing depends on current-quarter financial and macro inputs being final and available.
