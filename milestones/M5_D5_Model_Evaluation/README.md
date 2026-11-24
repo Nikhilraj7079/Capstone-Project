@@ -1,13 +1,13 @@
 # M5 / D5 — Model Evaluation & Validation
 
-**Status: COMPLETED WITH DOCUMENTED LIMITATIONS.** The D5 executive decision memorandum, updated model-training notebook and Python training script have been received and are indexed below. The Python source and a notebook version derived from it are committed in the M5 working folder. The original `ML_Model_Training(6).ipynb` upload is not available here and is not represented as uploaded.
+**Status: COMPLETED WITH DOCUMENTED LIMITATIONS.** The D5 executive decision memorandum, updated model-training notebook and Python training script have been received and are indexed below. The latest uploaded notebook (`ML_Model_Training(7).ipynb`) has replaced the earlier notebook at the stable M5 path `02_WORKING/ML_Model_Training.ipynb`. The separate Python script remains available. See the Working Files README for the documented difference between the notebook's SARIMAX designation and the D5 memorandum's Seasonal Naive decision.
 
 ## 1. Submitted D5 files and data record
 
 | Artifact | Received filename | Purpose | SHA-256 | GitHub binary status |
 |---|---|---|---|---|
 | Evaluation memorandum | `ANCP_Team-K_D5_v1.pdf` (4 pages) | D5 decision, validation, leakage audit, error-cost and robustness assessment | `9055c5e0e35a3dd7e7ea88e36e03929f8d00a131af0d7808ad36fa787cd74c82` | Pending upload/verification |
-| Jupyter notebook | `ML_Model_Training.ipynb` | Notebook assembled from the received Python workflow, with setup/import cell | Committed: [Open notebook](02_WORKING/ML_Model_Training.ipynb) |
+| Jupyter notebook | `ML_Model_Training.ipynb` | Latest uploaded notebook replacing the earlier M5 notebook; compares SARIMAX and other candidate models | Committed: [Open notebook](02_WORKING/ML_Model_Training.ipynb) |
 | Python training script | `ml_model_training(2).py` | Original received Python source | Committed: [Open Python file](02_WORKING/ml_model_training%282%29.py) |
 | Original D5 notebook upload | `ML_Model_Training(6).ipynb` | Original submitted notebook version | Not available in this update; not claimed as uploaded |
 
