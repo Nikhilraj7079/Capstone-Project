@@ -1,6 +1,6 @@
 # M5 / D5 — Model Evaluation & Validation
 
-**Status: COMPLETED WITH DOCUMENTED LIMITATIONS.** The D5 executive decision memorandum, updated model-training notebook and Python training script have been received and are indexed below. The latest uploaded notebook (`ML_Model_Training(7).ipynb`) has replaced the earlier notebook at the stable M5 path `02_WORKING/ML_Model_Training.ipynb`. The separate Python script remains available. See the Working Files README for the documented difference between the notebook's SARIMAX designation and the D5 memorandum's Seasonal Naive decision.
+**Status: COMPLETED WITH DOCUMENTED LIMITATIONS.** The D5 executive decision memorandum, updated model-training notebook and Python training script have been received and are indexed below. The latest uploaded notebook (`ML_Model_Training(7).ipynb`) has replaced the earlier notebook at the stable M5 path `02_WORKING/ML_Model_Training.ipynb`. The separate Python script remains available. **Current model designation:** the latest notebook designates SARIMAX as the final project model. Its validation MAE is the lowest among the compared models. The holdout table is reported transparently: Seasonal Naive has lower holdout errors than SARIMAX. The earlier D5 memorandum's Seasonal Naive selection and 26.11% forecast are retained as historical memorandum results and are not the current notebook's model decision/output.
 
 ## 1. Submitted D5 files and data record
 
@@ -18,9 +18,47 @@
 
 **Source input dependency:** the notebook and script expect `EDA ANALYSIS.xlsx`, worksheet `Sheet1`, including the monthly oil benchmark quarterly-mean field. The exact source workbook is not included with these three uploads and its SHA-256/source version is not pinned in the D5 memorandum. A clean rerun therefore remains conditional on obtaining and reconciling that exact workbook.
 
-## 2. Executive decision
+## 2. Executive decision — latest notebook designation
 
-Adopt **Seasonal Naive** (same quarter one year earlier) as the primary one-quarter-ahead EBITDA-margin benchmark. Use ETS and Gradient Boosting as secondary cross-checks.
+The latest uploaded M5 notebook explicitly designates **SARIMAX as the final project model**. SARIMAX achieves the lowest validation MAE (4.953 percentage points) among the models compared, ahead of Seasonal Naive (7.470 pp). It is therefore the selected model for the project workflow and forecast artifact.
+
+**Important holdout qualification:** SARIMAX does not achieve the lowest error on the locked test set. Seasonal Naive performs better on holdout MAE, RMSE and MASE. The README reports this result rather than describing SARIMAX as the holdout-performance winner. SARIMAX is the designated final model based on the notebook's model decision and validation comparison; Seasonal Naive remains the strongest holdout comparator in this run.
+
+## 3. Model comparison from the latest M5 notebook
+
+All MAE and RMSE values are EBITDA Margin percentage points (pp). Values below are transcribed from the saved validation and holdout comparison tables in `02_WORKING/ML_Model_Training.ipynb`. XGBoost was not installed in the saved execution, so it does not appear in the displayed tables.
+
+### Validation comparison
+
+| Role | Model | MAE (pp) | RMSE (pp) | MASE |
+|---|---|---:|---:|---:|
+| **Final model** | **SARIMAX** | **4.953** | **6.307** | **0.297** |
+| Comparator | Seasonal Naive | 7.470 | 8.187 | 0.448 |
+| Comparator | Lasso | 10.074 | 10.978 | 0.604 |
+| Comparator | Elastic Net | 13.264 | 14.069 | 0.796 |
+| Comparator | Ridge | 13.278 | 14.064 | 0.796 |
+| Comparator | Gradient Boosting | 14.795 | 15.988 | 0.887 |
+| Comparator | Random Forest | 16.635 | 17.735 | 0.998 |
+| Comparator | Historical Mean | 16.876 | 17.931 | 1.012 |
+| Comparator | ETS | 19.370 | 20.358 | 1.162 |
+
+### Locked holdout comparison
+
+| Role | Model | MAE (pp) | RMSE (pp) | MASE |
+|---|---|---:|---:|---:|
+| **Designated final model** | **SARIMAX** | **14.197** | **15.193** | **0.851** |
+| Best holdout comparator | Seasonal Naive | 3.948 | 4.714 | 0.237 |
+| Comparator | ETS | 6.612 | 6.973 | 0.397 |
+| Comparator | Random Forest | 7.188 | 7.896 | 0.431 |
+| Comparator | Gradient Boosting | 8.207 | 8.841 | 0.492 |
+| Comparator | Elastic Net | 11.562 | 12.334 | 0.693 |
+| Comparator | Ridge | 12.612 | 13.527 | 0.756 |
+| Comparator | Lasso | 13.752 | 14.881 | 0.825 |
+| Comparator | Historical Mean | 14.853 | 16.083 | 0.891 |
+
+**Interpretation:** SARIMAX is the validation leader and the notebook-designated final model. Seasonal Naive is materially more accurate on this seven-observation holdout. The test sample is small, so this contrast should be treated as a model-risk finding, not hidden or dismissed. Before production reliance, investigate why validation and holdout rankings differ and perform rolling-origin evaluation.
+
+**Saved notebook forecast:** the latest notebook's saved output reports a next-quarter EBITDA Margin forecast of **21.75%** from the final SARIMAX fit. This is the notebook output, not the D5 memorandum's earlier corrected 2026 Q3 Seasonal Naive forecast of 26.11%. These values arise from different model versions/decision contexts and must not be blended.
 
 ## 3. Evaluation design and leakage controls
 
@@ -57,13 +95,13 @@ All MAE/RMSE values are EBITDA-margin percentage points (pp).
 
 For Seasonal Naive, the memo reports a 95% t-based interval for the mean absolute error of 1.38–6.52 pp, based on seven test errors. It also reports that the confidence interval overlaps those of ETS and Gradient Boosting, so the apparent margin over those models is not statistically conclusive.
 
-## 5. Forecast correction and risk communication
+## 5. Forecast output and version reconciliation
 
-- **D5 corrected 2026 Q3 point forecast:** 26.11% EBITDA Margin, repeating the 2025 Q3 actual under the documented `shift(3)` alignment.
-- **Earlier D4 draft:** 29.93%, identified in D5 as a prior-draft alignment error corresponding to 2025 Q1.
-- **D5 empirical risk band:** ±9.24 percentage points, approximately 16.9%–35.4%. This is an empirical risk buffer, not a model-native prediction interval or guarantee.
+- **Latest notebook SARIMAX forecast:** 21.75% next-quarter EBITDA Margin, as displayed in the saved notebook output after refitting SARIMAX on the available observations.
+- **Earlier D5 memorandum forecast:** 26.11% for 2026 Q3 using Seasonal Naive. This remains a historical submitted-memorandum result, not the current SARIMAX notebook forecast.
+- **Earlier D4 draft:** 29.93%, identified by the D5 memorandum as a prior-draft alignment error.
 
-Use 26.11% when communicating the D5 memo's corrected 2026 Q3 forecast. Preserve the earlier D4 report as historical submission evidence.
+The three figures refer to different model/version contexts. Use 21.75% when describing the latest notebook's SARIMAX output; use 26.11% only when describing the earlier D5 memorandum. Do not present either as a live/current forecast without rerunning the notebook against the reconciled source workbook and confirming the forecast origin.
 
 ## 6. Business interpretation and error analysis
 
